@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Main Page</title>
+    <link rel="stylesheet" href="../static/styles.css">
+</head>
+
+<body>
+<div class="back-black">
+    <nav class="navbar">
+        <div class="logo-and-hamburger">
+            <button class="hamburger-btn" onclick="toggleMenu()">≡</button>
+            <a href="#" class="logo"><img class="logo-img" src="../static/img/logo.png" alt="Logo">Epicure Express</a>
+        </div>
+        <div id="menu-container" class="menu-container">
+            <h2>Выберите</h2>
+            <h2>свою категорию!</h2>
+            <ul class="hamburger-list">
+                <li><a href="#">Category 1</a></li>
+                <li><a href="#">Category 2</a></li>
+                <li><a href="#">Category 3</a></li>
+            </ul>
+        </div>
+        <button id="login-btn" class="btn login-btn">Вход</button>
+    </nav>
+
+    <div id="login-overlay" style="display: none;">
+        <div id="login-popup">
+            <form action="/loginconfirm" method="post">
+                <div>
+                    <label>Логин:</label>
+                    <input type="text" name="login" />
+                </div>
+                <div>
+                    <label>Пароль:</label>
+                    <input type="password" name="password" />
+                </div>
+                <div>
+                    <button type="submit" class="btn">Войти</button>
+                    <button id="reg-btn" type="button" class="btn">Регистрация</button>
+                </div>
+                <button id="cancel-log-btn" type="button" class="btn">Отмена</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="register-overlay" style="display: none;">
+        <div id="register-popup">
+            <form action="/registerconfirm" method="post">
+                <div>
+                    <label>Логин:</label>
+                    <input type="text" name="login" />
+                </div>
+                <div>
+                    <label>Пароль:</label>
+                    <input type="password" name="password" />
+                </div>
+                <div>
+                    <label>Повтор пароля:</label>
+                    <input type="password" name="confirm-password" />
+                </div>
+                <div>
+                    <button type="submit" class="btn">Зарегистрироваться</button>
+                    <button id="login-reg-btn" type="button" class="btn">Уже есть аккаунт</button>
+                </div>
+                <button id="cancel-reg-btn" type="button" class="btn">Отмена</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="image-panels">
+        <h1>Наш ассортимент</h1>
+        <div>
+        <a href="#" class="panel"><img src="../static/img/readymeals.png" alt="Ready Meal"><p>ГОТОВЫЕ БЛЮДА</p></a>
+        <a href="#" class="panel"><img src="../static/img/drinks.png" alt="Drink"><p>НАПИТКИ</p></a>
+        <a href="#" class="panel"><img src="../static/img/products.png" alt="Product"><p>ПРОДУКТЫ</p></a>
+        </div>
+    </div>
+
+    <div class="about-us">
+        <h1>О Нас...</h1>
+        <p>
+            Вас приветствует компания «FreshDeliveries» - лидер рынка по продаже
+            и доставке готовой еды, напитков и продуктов!
+            <br><br>
+            Мы рады, что вы выбрали наш сайт, где можно найти огромный
+            ассортимент качественных товаров для всей семьи.
+            <br><br>
+            Наша компания была основана с одной целью - предоставить клиентам
+            комфортную и быструю доставку свежих продуктов и готовой еды прямо
+            к их doorstep. Мы понимаем, что время стало ценным ресурсом, и поэтому
+            мы сделали все возможное, чтобы облегчить вашу жизнь.
+            <br><br>
+            На нашем сайте вы можете найти огромный ассортимент товаров от известных
+            производителей и местных поставщиков. Вам доступны свежие продукты из
+            супермаркета, готовая еда для различных вкусов и предпочтений, а также
+            напитки и другие полезные товары.
+            <br><br>
+            Но наша компания не только предлагает широкий выбор продуктов - мы
+            также заботимся о клиенте. Мы обеспечиваем безопасность и качество всех
+            доставленных товаров, чтобы вы могли быть уверены в безопасности своей еды.
+            <br><br>
+            Кроме того, у нас есть команда профессиональных логистов, которые будут
+            заботиться о том, чтобы ваш заказ прибыл вовремя и в хорошем состоянии.
+            Мы предлагаем разнообразные способы доставки - от стандартной до
+            экспресс-доставки, чтобы вы могли выбрать наиболее удобное для себя решение.
+            <br><br>
+            Наша компания также постоянно развивается и улучшает свои услуги.
+            Мы слушаем обратную связь наших клиентов и стараемся удовлетворить
+            все их потребности.
+            <br><br>
+            Здесь вы можете найти не только продукты, но и опытные консультанты,
+            которые помогут вам выбрать лучшие товары для вашего стола. Наш сайт
+            - это ваш путь к комфортной и быстрой доставке высококачественных продуктов
+            и готовой еды. <br>
+            <br><br>
+            Спасибо за выбор нашего сайта!<br>
+            <br><br>
+            Мы рады, что вы стали частью нашей семьи,
+            и мы будем рады помочь вам в любое время.
+        </p>
+    </div>
+
+    <footer class="footer">
+        <img class="logo-img" src="../static/img/logo.png" alt="Logo">
+        <a href="#" class="contact-link">Контакты</a>
+    </footer>
+
+    <script src="../static/script.js"></script>
+</div>
+</body>
+</html>
