@@ -196,6 +196,17 @@
         transition: all 0.1s ease-out;
     }
 
+    .logout-btn {
+        background-color: #af4c4c;
+        transition: all 0.1s ease-out;
+    }
+
+    .logout-btn:hover{
+        transform: scale(1.07);
+        background-color: #8f3e3e;
+        transition: all 0.1s ease-out;
+    }
+
     .right-form {
         margin-left: auto;
     }

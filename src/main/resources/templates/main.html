@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Main Page</title>
@@ -22,52 +22,12 @@
                 <li><a href="#">Category 3</a></li>
             </ul>
         </div>
-        <button id="login-btn" class="btn login-btn">Вход</button>
+
+        <span th:utext="${autorizeForm}"></span>
+
     </nav>
 
-    <div id="login-overlay" style="display: none;">
-        <div id="login-popup">
-            <form action="/loginconfirm" method="post">
-                <div>
-                    <label>Логин:</label>
-                    <input type="text" name="login" />
-                </div>
-                <div>
-                    <label>Пароль:</label>
-                    <input type="password" name="password" />
-                </div>
-                <div>
-                    <button type="submit" class="btn">Войти</button>
-                    <button id="reg-btn" type="button" class="btn">Регистрация</button>
-                </div>
-                <button id="cancel-log-btn" type="button" class="btn">Отмена</button>
-            </form>
-        </div>
-    </div>
-
-    <div id="register-overlay" style="display: none;">
-        <div id="register-popup">
-            <form action="/registerconfirm" method="post">
-                <div>
-                    <label>Логин:</label>
-                    <input type="text" name="login" />
-                </div>
-                <div>
-                    <label>Пароль:</label>
-                    <input type="password" name="password" />
-                </div>
-                <div>
-                    <label>Повтор пароля:</label>
-                    <input type="password" name="confirm-password" />
-                </div>
-                <div>
-                    <button type="submit" class="btn">Зарегистрироваться</button>
-                    <button id="login-reg-btn" type="button" class="btn">Уже есть аккаунт</button>
-                </div>
-                <button id="cancel-reg-btn" type="button" class="btn">Отмена</button>
-            </form>
-        </div>
-    </div>
+    <span th:utext="${loginForm}"></span>
 
     <div class="image-panels">
         <h1>Наш ассортимент</h1>
