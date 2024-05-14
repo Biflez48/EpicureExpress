@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<body>
+
+<nav th:fragment="navbar" class="navbar">
+    <div class="logo-and-hamburger">
+        <button class="hamburger-btn" onclick="toggleMenu()">≡</button>
+        <a href="#" class="logo"><img class="logo-img" src="../static/img/logo.png" alt="Logo">Epicure Express</a>
+    </div>
+    <div id="menu-container" class="menu-container">
+        <h2>Выберите</h2>
+        <h2>свою категорию!</h2>
+        <ul class="hamburger-list">
+            <li><a href="#">Category 1</a></li>
+            <li><a href="#">Category 2</a></li>
+            <li><a href="#">Category 3</a></li>
+        </ul>
+    </div>
+
+    <div th:replace="authorization.html :: ${authorizeForm}"></div>
+</nav>
+
+</body>
+</html>

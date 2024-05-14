@@ -8,26 +8,13 @@
 
 <body>
 <div class="back-black">
-    <nav class="navbar">
-        <div class="logo-and-hamburger">
-            <button class="hamburger-btn" onclick="toggleMenu()">≡</button>
-            <a href="#" class="logo"><img class="logo-img" src="../static/img/logo.png" alt="Logo">Epicure Express</a>
-        </div>
-        <div id="menu-container" class="menu-container">
-            <h2>Выберите</h2>
-            <h2>свою категорию!</h2>
-            <ul class="hamburger-list">
-                <li><a href="#">Category 1</a></li>
-                <li><a href="#">Category 2</a></li>
-                <li><a href="#">Category 3</a></li>
-            </ul>
-        </div>
-
-        <span th:utext="${autorizeForm}"></span>
-
-    </nav>
-
+    <div th:replace="navbar.html :: navbar"></div>
+<!--
     <span th:utext="${loginForm}"></span>
+-->
+
+    <div th:replace="${typeFormLog} :: loginoverlay"></div>
+    <div th:replace="${typeFormReg} :: regoverlay"></div>
 
     <div class="image-panels">
         <h1>Наш ассортимент</h1>
@@ -82,10 +69,7 @@
         </p>
     </div>
 
-    <footer class="footer">
-        <img class="logo-img" src="../static/img/logo.png" alt="Logo">
-        <a href="#" class="contact-link">Контакты</a>
-    </footer>
+    <div th:replace="footer.html :: footer"></div>
 
     <script src="../static/script.js"></script>
 </div>

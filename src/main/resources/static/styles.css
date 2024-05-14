@@ -77,6 +77,11 @@
         margin-left: 10px;
     }
 
+    .except-input{
+        border: 2px solid #ff0000;
+        box-shadow: 0 0 8px 1px #ff5c5c;
+    }
+
     .back-black {
         position: absolute;
         top: 0;

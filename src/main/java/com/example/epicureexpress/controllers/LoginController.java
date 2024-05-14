@@ -22,18 +22,22 @@ public class LoginController {
         loginProcessor.setUsername(login);
         loginProcessor.setPassword(password);
         boolean loggedIn = loginProcessor.login();
-/*
-        if (loggedIn) {
-            return "redirect:/main";
+
+        if (!loggedIn) {
+            return "redirect:/?logsuccess=false";
         }
-*/
-//        model.addAttribute("message", "Login failed!");
+
         return "redirect:/";
     }
 
     @PostMapping("/logoutconfirm")
     public String logoutPost(){
         boolean loggedOut = loginProcessor.logout();
+        return "redirect:/";
+    }
+
+    @PostMapping("/cancelauth")
+    public String cancelPost(){
         return "redirect:/";
     }
 
