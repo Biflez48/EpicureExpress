@@ -156,7 +156,7 @@
         position: absolute;
         top: 82px;
         left: 0;
-        width: 250px;
+        width: 200px;
         padding: 20px;
         background-color: #444;
         border-bottom-right-radius: 10px;
@@ -167,6 +167,20 @@
 
     .menu-container.active {
         display: block;
+    }
+
+    .menu-container h2{
+        border-bottom: 2px solid #fff;
+        padding-bottom: 10px;
+    }
+
+    .menu-container ul li{
+        display: flex;
+        justify-content: center;
+    }
+
+    .menu-container ul li a:hover{
+        color: #4c98af;
     }
 
     .center-buttons {

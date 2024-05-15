@@ -1,19 +1,25 @@
 package com.example.epicureexpress.models;
 
+import com.example.epicureexpress.repositories.UsersRepository;
 import com.example.epicureexpress.services.LoggedUserManagementService;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.annotation.RequestScope;
+
+import java.util.List;
 
 @Component
 @RequestScope
 public class LoginProcessor {
     private final LoggedUserManagementService loggedUserManagementService;
+    private final UsersRepository usersRepository;
     private String username;
     private String password;
     public LoginProcessor(
-            LoggedUserManagementService loggedUserManagementService
+            LoggedUserManagementService loggedUserManagementService,
+            UsersRepository usersRepository
     ){
         this.loggedUserManagementService = loggedUserManagementService;
+        this.usersRepository = usersRepository;
     }
 
     public boolean login(){
@@ -21,8 +27,9 @@ public class LoginProcessor {
         String password = this.password;
 
         boolean loginResult = false;
-        if ("Alexey".equals(username) && "1".equals(password)){
-            loggedUserManagementService.setUsername(username);
+        List<User> gettingUsers = usersRepository.findUser(username,password);
+        if (gettingUsers.size() != 0){
+            loggedUserManagementService.setUsername(gettingUsers.get(0).getLogin());
             loginResult = true;
         }
         return loginResult;
