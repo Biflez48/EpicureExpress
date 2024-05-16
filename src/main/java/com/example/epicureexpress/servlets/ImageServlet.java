@@ -24,12 +24,19 @@ public class ImageServlet extends HttpServlet {
     }
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        String urlImage = request.getParameter("admin");
+        int id = Integer.parseInt(request.getParameter("id"));
         response.setContentType("image/jpeg");
         ServletOutputStream out;
         out = response.getOutputStream();
         List<Nomenclature> nomenclatures = nomenclaturesRepository.findNomenclature();
-        out.write(nomenclatures.get(0).getImage());
+        int number = 0;
+        for (int i=0;i<nomenclatures.size();i++) {
+            if(nomenclatures.get(i).getId() == id){
+                number = i;
+                break;
+            }
+        }
+        out.write(nomenclatures.get(number).getImage());
         out.close();
     }
 }

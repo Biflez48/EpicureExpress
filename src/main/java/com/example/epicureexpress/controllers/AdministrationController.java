@@ -12,14 +12,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.imageio.ImageIO;
-import java.awt.image.BufferedImage;
 import java.io.*;
 import java.math.BigDecimal;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
 import java.util.List;
 
 @Controller
@@ -65,13 +59,8 @@ public class AdministrationController {
             @RequestParam String price
     ) throws IOException {
 
-        byte[] bytes = file.getBytes();
-        ByteArrayInputStream bais = new ByteArrayInputStream(bytes);
-        BufferedImage image = ImageIO.read(bais);
-        bais.close();
-
         Nomenclature nomenclature = new Nomenclature();
-        //nomenclature.setImage(image);
+        nomenclature.setImage(file.getBytes());
         nomenclature.setName(name);
         nomenclature.setPrice(new BigDecimal(price));
         nomenclature.setCountPurchase(0);

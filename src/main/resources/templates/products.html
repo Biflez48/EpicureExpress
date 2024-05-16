@@ -14,7 +14,7 @@
         <h2>Вот что мы нашли:</h2>
         <ul class="products-list">
             <li th:each="product: ${productsView}">
-                <td><img src="/product/imgServlet"/></td>
+                <td><img th:src="${product.servletId}"/></td>
                 <p th:text="${product.name}">
                 <p th:text="${product.price}"></p>
             </li>

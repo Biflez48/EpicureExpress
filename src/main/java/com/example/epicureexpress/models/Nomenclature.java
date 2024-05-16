@@ -1,7 +1,5 @@
 package com.example.epicureexpress.models;
 
-import java.awt.*;
-import java.awt.image.BufferedImage;
 import java.math.BigDecimal;
 
 public class Nomenclature {
@@ -11,6 +9,7 @@ public class Nomenclature {
     private BigDecimal price;
     private int idType;
     private int countPurchase;
+    private String servletId;
 
     public void setId(int id){
         this.id = id;
@@ -47,5 +46,11 @@ public class Nomenclature {
     }
     public int getCountPurchase(){
         return countPurchase;
+    }
+    public void setServletId(String servletId){
+        this.servletId = servletId;
+    }
+    public String getServletId(){
+        return servletId;
     }
 }

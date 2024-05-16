@@ -22,17 +22,7 @@ public class NomenclaturesRepository {
     }
 
     public void addNomenclature(Nomenclature nomenclature){
-/*
-        BufferedImage bufferedImage = nomenclature.getImage();
 
-        ByteArrayOutputStream bos = new ByteArrayOutputStream();
-        try {
-            ImageIO.write(bufferedImage, "jpg", bos);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-        byte[] imageData = bos.toByteArray();
-        */
         byte[] imageData = nomenclature.getImage();
 
         String sql = "INSERT INTO nomenclatures (idtype,namenom,priceprod,imgnom,countpur) VALUES (?,?,?,?,?)";
@@ -54,17 +44,10 @@ public class NomenclaturesRepository {
         RowMapper<Nomenclature> nomenclatureRowMapper = (r, i) -> {
             Nomenclature rowObject = new Nomenclature();
             rowObject.setId(r.getInt("idnom"));
+            rowObject.setServletId("/product/imgServlet?id="+r.getInt("idnom"));
             rowObject.setIdType(r.getInt("idtype"));
             rowObject.setName(r.getString("namenom"));
             rowObject.setPrice(r.getBigDecimal("priceprod"));
-            /*
-            try{
-                BufferedImage img = ImageIO.read(new ByteArrayInputStream(r.getBytes("imgnom")));
-                rowObject.setImage(img);
-            }catch (Exception e){
-                throw new RuntimeException(e);
-            }
-            */
             rowObject.setImage(r.getBytes("imgnom"));
             rowObject.setCountPurchase(r.getInt("countpur"));
             return rowObject;
