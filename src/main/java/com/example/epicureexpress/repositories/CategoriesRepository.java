@@ -23,6 +23,7 @@ public class CategoriesRepository {
             Category rowObject = new Category();
             rowObject.setId(r.getInt("idcateg"));
             rowObject.setName(r.getString("namecateg"));
+            rowObject.setCode("/products?selectedcategory="+r.getString("codecateg"));
             return rowObject;
         };
 

@@ -30,6 +30,7 @@ public class LoginProcessor {
         List<User> gettingUsers = usersRepository.findUser(username,password);
         if (gettingUsers.size() != 0){
             loggedUserManagementService.setUsername(gettingUsers.get(0).getLogin());
+            loggedUserManagementService.setIdRole(gettingUsers.get(0).getIdRol());
             loginResult = true;
         }
         return loginResult;

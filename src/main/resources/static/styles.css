@@ -84,9 +84,15 @@
 
     .back-black {
         position: absolute;
+        width: 100%;
+        height: auto;
         top: 0;
         left: 0;
         background-color: rgba(0, 0, 0, 0.5);
+    }
+
+    .holder{
+        height: 100vh;
     }
 
     #login-overlay,
@@ -181,6 +187,14 @@
 
     .menu-container ul li a:hover{
         color: #4c98af;
+    }
+
+    .logoutform{
+        display: flex;
+    }
+
+    .logoutform form{
+        margin-left: 20px;
     }
 
     .center-buttons {

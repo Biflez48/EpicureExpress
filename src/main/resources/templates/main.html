@@ -2,26 +2,23 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Main Page</title>
+    <title>Приветствуем!</title>
     <link rel="stylesheet" href="../static/styles.css">
 </head>
 
 <body>
 <div class="back-black">
     <div th:replace="navbar.html :: navbar"></div>
-<!--
-    <span th:utext="${loginForm}"></span>
--->
-
+<!-- <span th:utext="${loginForm}"></span> -->
     <div th:replace="${typeFormLog} :: loginoverlay"></div>
     <div th:replace="${typeFormReg} :: regoverlay"></div>
 
     <div class="image-panels">
         <h1>Наш ассортимент</h1>
         <div>
-        <a href="#" class="panel"><img src="../static/img/readymeals.png" alt="Ready Meal"><p>ГОТОВЫЕ БЛЮДА</p></a>
-        <a href="#" class="panel"><img src="../static/img/drinks.png" alt="Drink"><p>НАПИТКИ</p></a>
-        <a href="#" class="panel"><img src="../static/img/products.png" alt="Product"><p>ПРОДУКТЫ</p></a>
+        <a href="/products?selectedtype=readymeal" class="panel"><img src="../static/img/readymeals.png" alt="Ready Meal"><p>ГОТОВЫЕ БЛЮДА</p></a>
+        <a href="/products?selectedtype=drink" class="panel"><img src="../static/img/drinks.png" alt="Drink"><p>НАПИТКИ</p></a>
+        <a href="/products?selectedtype=product" class="panel"><img src="../static/img/products.png" alt="Product"><p>ПРОДУКТЫ</p></a>
         </div>
     </div>
 

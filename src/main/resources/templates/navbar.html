@@ -6,12 +6,12 @@
 <nav th:fragment="navbar" class="navbar">
     <div class="logo-and-hamburger">
         <button class="hamburger-btn" onclick="toggleMenu()">≡</button>
-        <a href="#" class="logo"><img class="logo-img" src="../static/img/logo.png" alt="Logo">Epicure Express</a>
+        <a href="/" class="logo"><img class="logo-img" src="../static/img/logo.png" alt="Logo">Epicure Express</a>
     </div>
     <div id="menu-container" class="menu-container">
         <h2>Выберите<br>категорию!</h2>
         <ul class="hamburger-list">
-            <li th:each="categ: ${categories}"><a th:href="${categ.name}" th:text="${categ.name}"></a></li>
+            <li th:each="categ: ${categories}"><a th:href="${categ.code}" th:text="${categ.name}"></a></li>
         </ul>
     </div>
 

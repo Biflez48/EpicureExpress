@@ -1,6 +1,6 @@
 package com.example.epicureexpress.models;
 
-public class Category {
+public class TypeProduct {
     private int id;
     private String name;
     private String code;

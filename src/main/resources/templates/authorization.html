@@ -5,9 +5,14 @@
 
 <button th:fragment="loginbth" id="login-btn" class="btn login-btn">Вход</button>
 
-<form th:fragment="logoutform" action="/logoutconfirm" method="post">
-    <button id="logout-btn" type="submit" class="btn logout-btn">Выход</button>
-</form>
+<div class="logoutform" th:fragment="logoutform">
+    <form action="/bucket" method="get">
+        <button id="bucket-btn" type="submit" class="btn bucket-btn">Корзина</button>
+    </form>
+    <form action="/logoutconfirm" method="post">
+        <button id="logout-btn" type="submit" class="btn logout-btn">Выход</button>
+    </form>
+</div>
 
 <div th:fragment="loginoverlay" id="login-overlay" style="display: none;">
     <div id="login-popup">

@@ -1,9 +1,8 @@
 package com.example.epicureexpress.models;
 
-public class Category {
+public class Role {
     private int id;
     private String name;
-    private String code;
 
     public void setId(int id){
         this.id = id;
@@ -16,11 +15,5 @@ public class Category {
     }
     public String getName(){
         return name;
-    }
-    public void setCode(String code){
-        this.code = code;
-    }
-    public String getCode(){
-        return code;
     }
 }

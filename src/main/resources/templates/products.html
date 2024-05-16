@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Продукты</title>
+    <link rel="stylesheet" href="../static/styles.css">
+</head>
+
+<body>
+<div class="back-black">
+    <div th:replace="navbar.html :: navbar"></div>
+
+    <div class="products-container">
+        <h2>Вот что мы нашли:</h2>
+        <ul class="products-list">
+            <li th:each="product: ${productsView}">
+                <td><img src="/product/imgServlet"/></td>
+                <p th:text="${product.name}">
+                <p th:text="${product.price}"></p>
+            </li>
+        </ul>
+    </div>
+
+    <div class="holder"></div>
+
+    <div th:replace="footer.html :: footer"></div>
+
+    <script src="../static/script.js"></script>
+</div>
+</body>
+</html>

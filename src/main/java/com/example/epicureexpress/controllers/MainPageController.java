@@ -55,7 +55,6 @@ public class MainPageController {
             model.addAttribute("authorizeForm", "loginbth");
         }else{
             model.addAttribute("authorizeForm", "logoutform");
-            // вывести кнопку со ссылкой на корзину
         }
 
         return "main.html";
