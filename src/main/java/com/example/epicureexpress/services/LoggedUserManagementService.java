@@ -6,8 +6,16 @@ import org.springframework.web.context.annotation.SessionScope;
 @Service
 @SessionScope
 public class LoggedUserManagementService {
+    private int id;
     private String username;
     private int idRole;
+
+    public void setId(int id){
+        this.id = id;
+    }
+    public int getId(){
+        return id;
+    }
     public void setUsername(String username){
         this.username = username;
     }

@@ -3,6 +3,7 @@ package com.example.epicureexpress.controllers;
 import com.example.epicureexpress.models.Category;
 import com.example.epicureexpress.repositories.CategoriesRepository;
 import com.example.epicureexpress.services.LoggedUserManagementService;
+import com.example.epicureexpress.services.NavbarService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,15 +16,12 @@ import java.util.List;
 @Controller
 public class MainPageController {
 
-    private final LoggedUserManagementService loggedUserManagementService;
-    private final CategoriesRepository categoriesRepository;
+    private final NavbarService navbarService;
 
     public MainPageController(
-            LoggedUserManagementService loggedUserManagementService,
-            CategoriesRepository categoriesRepository
+            NavbarService navbarService
     ){
-        this.loggedUserManagementService = loggedUserManagementService;
-        this.categoriesRepository = categoriesRepository;
+        this.navbarService = navbarService;
     }
 
     @GetMapping("/")
@@ -32,29 +30,7 @@ public class MainPageController {
             @RequestParam(required = false) String registersuccess,
             Model model
     ){
-        List<Category> categories = categoriesRepository.findAllCategories();
-        model.addAttribute("categories", categories);
-
-        if (logsuccess != null){
-            model.addAttribute("typeFormLog", "exceptauth.html");
-            model.addAttribute("typeFormReg", "authorization.html");
-        }else{
-            if (registersuccess != null){
-                model.addAttribute("typeFormLog", "authorization.html");
-                model.addAttribute("typeFormReg", "exceptauth.html");
-            }else{
-                model.addAttribute("typeFormLog", "authorization.html");
-                model.addAttribute("typeFormReg", "authorization.html");
-            }
-        }
-
-        String username = loggedUserManagementService.getUsername();
-
-        if(username == null){
-            model.addAttribute("authorizeForm", "loginbth");
-        }else{
-            model.addAttribute("authorizeForm", "logoutform");
-        }
+        navbarService.getNavbar(model,"/",logsuccess,registersuccess);
 
         return "main.html";
     }

@@ -28,15 +28,9 @@ public class ImageServlet extends HttpServlet {
         response.setContentType("image/jpeg");
         ServletOutputStream out;
         out = response.getOutputStream();
-        List<Nomenclature> nomenclatures = nomenclaturesRepository.findNomenclature();
-        int number = 0;
-        for (int i=0;i<nomenclatures.size();i++) {
-            if(nomenclatures.get(i).getId() == id){
-                number = i;
-                break;
-            }
-        }
-        out.write(nomenclatures.get(number).getImage());
+        byte[] img = nomenclaturesRepository.getImgById(id);
+        
+        out.write(img);
         out.close();
     }
 }

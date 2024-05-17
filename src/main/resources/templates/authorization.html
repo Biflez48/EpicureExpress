@@ -10,6 +10,7 @@
         <button id="bucket-btn" type="submit" class="btn bucket-btn">Корзина</button>
     </form>
     <form action="/logoutconfirm" method="post">
+        <input style="display: none" name="addresspage" th:value="${namepage}">
         <button id="logout-btn" type="submit" class="btn logout-btn">Выход</button>
     </form>
 </div>
@@ -25,12 +26,14 @@
                 <label>Пароль:</label>
                 <input type="password" name="password" />
             </div>
+            <input style="display: none" name="addresspage" th:value="${namepage}">
             <div>
                 <button type="submit" form="log-form" class="btn">Войти</button>
                 <button id="reg-btn" type="button" class="btn">Регистрация</button>
             </div>
         </form>
         <form action="/cancelauth" method="post" id="log-cancel">
+            <input style="display: none" name="addresspage" th:value="${namepage}">
             <button id="cancel-log-btn" type="submit" form="log-cancel" class="btn">Отмена</button>
         </form>
     </div>
@@ -51,12 +54,14 @@
                                 <label>Повтор пароля:</label>
                                 <input type="password" name="repeatPassword" />
                             </div>
+                    <input style="display: none" name="addresspage" th:value="${namepage}">
                         <div>
                                 <button type="submit" form="reg-form" class="btn">Зарегистрироваться</button>
                                 <button id="login-reg-btn" type="button" class="btn">Уже есть аккаунт</button>
                             </div>
                     </form>
             <form action="/cancelauth" method="post" id="reg-cancel">
+                <input style="display: none" name="addresspage" th:value="${namepage}">
                 <button id="cancel-reg-btn" type="submit" form="reg-cancel" class="btn">Отмена</button>
             </form>
             </div>

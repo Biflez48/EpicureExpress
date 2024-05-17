@@ -16,6 +16,8 @@
     </div>
 
     <div th:replace="authorization.html :: ${authorizeForm}"></div>
+    <div th:replace="${typeFormLog} :: loginoverlay"></div>
+    <div th:replace="${typeFormReg} :: regoverlay"></div>
 </nav>
 
 </body>

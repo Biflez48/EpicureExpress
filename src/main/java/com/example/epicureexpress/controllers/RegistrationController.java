@@ -19,7 +19,8 @@ public class RegistrationController {
     public String loginPost(
             @RequestParam String login,
             @RequestParam String password,
-            @RequestParam String repeatPassword
+            @RequestParam String repeatPassword,
+            @RequestParam String addresspage
     ){
         registrationProcessor.setUsername(login);
         registrationProcessor.setPassword(password);
@@ -27,9 +28,9 @@ public class RegistrationController {
         boolean regged = registrationProcessor.registration();
 
         if (!regged) {
-            return "redirect:/?registersuccess=false";
+            return "redirect:"+addresspage+"?registersuccess=false";
         }
 
-        return "redirect:/";
+        return "redirect:"+addresspage;
     }
 }

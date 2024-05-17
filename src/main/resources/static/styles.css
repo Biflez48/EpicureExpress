@@ -6,13 +6,15 @@
     }
 
     body {
+        display: flex;
+        flex-direction: column;
         font-family: Arial, sans-serif;
         background-color: #f5f5f5;
         top: 0;
         left: 0;
         width: 100%;
         height: 100vh;
-        background-image: url('../static/img/restourantbackground.png');
+        background-image: url('../static/img/restourantbackgrounddark.png');
         background-size: cover;
         background-position: center;
     }
@@ -92,7 +94,7 @@
     }
 
     .holder{
-        height: 100vh;
+        flex-grow: 1;
     }
 
     .image-container {
@@ -349,6 +351,125 @@
     .confusion-page {
         font-size: 18px;
         margin: 10px 40px;
+    }
+
+    .products-container{
+        margin: 10px 100px 0 100px;
+    }
+
+    .products-container h2{
+        color: white;
+        margin-bottom: 30px;
+    }
+
+    .products-container ul{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+    }
+
+    .products-container ul li{
+        display: flex;
+        flex-direction: column;
+        width: 170px;
+        background: #333;
+        border-radius: 10px;
+        border: 5px solid #015b3b;
+        padding: 10px;
+        color: white;
+        margin: 10px;
+    }
+
+    .products-container ul li img{
+        align-self: center;
+        border-radius: 7px;
+        width: 90%;
+    }
+
+    .products-container ul li div,
+    .products-container ul li h3{
+        display: flex;
+        justify-content: center;
+        align-self: center;
+        margin-top: 5px;
+    }
+
+    .products-container ul li div{
+        width: 90%;
+    }
+
+    .products-container ul li div p{
+        margin-left: 5px;
+    }
+
+    .products-container ul li h3{
+        border-bottom: 2px solid white;
+        width: 100%;
+        margin-bottom: 5px;
+        margin-top: 15px;
+    }
+
+    .add-to-bucket-btn{
+        color: #006506;
+        background: #ff7a7a;
+        border-radius: 4px;
+        width: 100%;
+        height: 27px;
+        margin-top: 10px;
+        align-self: center;
+    }
+
+    .bucket-container{
+        margin-left: 150px;
+        margin-right: 150px;
+    }
+
+    .bucket-container ul li{
+        display: flex;
+        flex-wrap: nowrap;
+        background: #333;
+        border-radius: 10px;
+        border: 5px solid #015b3b;
+        padding: 10px;
+        color: white;
+        margin: 10px;
+    }
+
+    .bucket-container ul li img{
+        width: 50px;
+        height: 50px;
+        border-radius: 7px;
+        margin-right: 10px;
+    }
+
+    .bucket-container ul li div,
+    .bucket-container ul li h3,
+    .bucket-container ul li button{
+        display: flex;
+        align-self: center;
+        margin-left: 10px;
+    }
+
+    .bucket-container ul li h3{
+        width: 100%;
+    }
+
+    .bucket-container ul li div p{
+        margin-left: 5px;
+    }
+
+    .bucket-container ul li div input{
+        height: 100%;
+        padding: 8px;
+        width: 50px;
+    }
+
+    .bucket-container ul li button{
+        height: 100%;
+        padding: 8px;
+        color: #006506;
+        background: #ff7a7a;
+        border-radius: 7px;
     }
 
 }

@@ -1,16 +1,10 @@
 package com.example.epicureexpress.repositories;
 
 import com.example.epicureexpress.models.Nomenclature;
-import com.example.epicureexpress.models.User;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
-import javax.imageio.ImageIO;
-import java.awt.image.BufferedImage;
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
 import java.util.List;
 
 @Repository
@@ -37,9 +31,33 @@ public class NomenclaturesRepository {
         );
     }
 
-    public List<Nomenclature> findNomenclature(){
+    public byte[] getImgById(int idNom){
+
+        String sql = "SELECT * FROM nomenclatures WHERE idnom = "+idNom;
+
+        RowMapper<Nomenclature> nomenclatureRowMapper = (r, i) -> {
+            Nomenclature rowObject = new Nomenclature();
+            rowObject.setId(r.getInt("idnom"));
+            rowObject.setImage(r.getBytes("imgnom"));
+            return rowObject;
+        };
+
+        return jdbc.query(sql, nomenclatureRowMapper).get(0).getImage();
+    }
+
+    public List<Nomenclature> findNomenclature(String selectedtype, String selectedcategory){
 
         String sql = "SELECT * FROM nomenclatures";
+
+        if(selectedtype != null && !selectedtype.equals("null")){
+            sql = "SELECT * FROM nomenclatures WHERE idtype IN (SELECT idtype FROM typesprod WHERE codetype = '"+selectedtype+"')";
+        }
+        if(selectedcategory != null && !selectedcategory.equals("null")){
+            sql = "SELECT DISTINCT * FROM nomenclatures WHERE idnom IN (SELECT DISTINCT idnom FROM listcateg WHERE idcateg IN (SELECT idcateg FROM categories WHERE codecateg = '"+selectedcategory+"'))";
+        }
+        if(selectedtype != null && !selectedtype.equals("null") && selectedcategory != null && !selectedcategory.equals("null")){
+            sql = "SELECT DISTINCT * FROM nomenclatures WHERE idtype IN (SELECT idtype FROM typesprod WHERE codetype = '\"+selectedtype+\"') AND idnom IN (SELECT DISTINCT idnom FROM listcateg WHERE idcateg IN (SELECT idcateg FROM categories WHERE codecateg = '\"+selectedcategory+\"'))";
+        }
 
         RowMapper<Nomenclature> nomenclatureRowMapper = (r, i) -> {
             Nomenclature rowObject = new Nomenclature();

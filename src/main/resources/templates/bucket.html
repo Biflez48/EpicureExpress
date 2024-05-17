@@ -7,14 +7,33 @@
 </head>
 
 <body>
-<div class="back-black">
     <div th:replace="navbar.html :: navbar"></div>
 
-    <div class="holder"></div>
+    <div class="bucket-container">
+        <ul class="products-list">
+            <li th:each="product: ${productsView}">
+                <img th:src="${product.servletId}"/>
+                <h3 th:text="${product.nameProd}"></h3>
+                <div>
+                    <p th:text="${product.priceProd}"></p>
+                    <p >руб.</p>
+                </div>
+                <div>
+                    <button class="edit-cnt-bucket-btn">-</button>
 
+                    <button class="edit-cnt-bucket-btn">+</button>
+                </div>
+                <button class="delete-from-bucket-btn" >Удалить</button>
+            </li>
+        </ul>
+    </div>
+
+    <div class="holder"></div>
+    <footer>
+        <h2>купить</h2>
+    </footer>
     <div th:replace="footer.html :: footer"></div>
 
     <script src="../static/script.js"></script>
-</div>
 </body>
 </html>

@@ -31,6 +31,7 @@ public class LoginProcessor {
         if (gettingUsers.size() != 0){
             loggedUserManagementService.setUsername(gettingUsers.get(0).getLogin());
             loggedUserManagementService.setIdRole(gettingUsers.get(0).getIdRol());
+            loggedUserManagementService.setId(gettingUsers.get(0).getId());
             loginResult = true;
         }
         return loginResult;

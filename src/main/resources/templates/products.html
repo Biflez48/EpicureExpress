@@ -7,25 +7,26 @@
 </head>
 
 <body>
-<div class="back-black">
     <div th:replace="navbar.html :: navbar"></div>
 
     <div class="products-container">
         <h2>Вот что мы нашли:</h2>
         <ul class="products-list">
             <li th:each="product: ${productsView}">
-                <td><img th:src="${product.servletId}"/></td>
-                <p th:text="${product.name}">
-                <p th:text="${product.price}"></p>
+                <img th:src="${product.servletId}"/>
+                <h3 th:text="${product.name}"></h3>
+                <div>
+                    <p th:text="${product.price}"></p>
+                    <p >руб.</p>
+                </div>
+                <button class="add-to-bucket-btn" >Добавить в корзину</button>
             </li>
         </ul>
     </div>
 
     <div class="holder"></div>
-
-    <div th:replace="footer.html :: footer"></div>
+    <footer th:replace="footer.html :: footer"></footer>
 
     <script src="../static/script.js"></script>
-</div>
 </body>
 </html>

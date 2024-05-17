@@ -5,6 +5,7 @@ import com.example.epicureexpress.models.Nomenclature;
 import com.example.epicureexpress.repositories.CategoriesRepository;
 import com.example.epicureexpress.repositories.NomenclaturesRepository;
 import com.example.epicureexpress.services.LoggedUserManagementService;
+import com.example.epicureexpress.services.NavbarService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,32 +21,29 @@ import java.util.List;
 public class AdministrationController {
 
     private final LoggedUserManagementService loggedUserManagementService;
-    private final CategoriesRepository categoriesRepository;
     private final NomenclaturesRepository nomenclaturesRepository;
+    private final NavbarService navbarService;
 
     public AdministrationController(
             LoggedUserManagementService loggedUserManagementService,
-            CategoriesRepository categoriesRepository,
-            NomenclaturesRepository nomenclaturesRepository
+            NomenclaturesRepository nomenclaturesRepository,
+            NavbarService navbarService
     ){
         this.loggedUserManagementService = loggedUserManagementService;
-        this.categoriesRepository = categoriesRepository;
         this.nomenclaturesRepository = nomenclaturesRepository;
+        this.navbarService = navbarService;
     }
 
     @GetMapping("/administrate")
     public String administrateGet(
             Model model
     ){
-        List<Category> categories = categoriesRepository.findAllCategories();
-        model.addAttribute("categories", categories);
-
         String username = loggedUserManagementService.getUsername();
-        int userRole = loggedUserManagementService.getIdRole();
 
-        if(username == null || userRole != 1){
+        if(username == null){
             return "redirect:/";
         }else{
+            navbarService.getNavbar(model,"/bucket",null,null);
             model.addAttribute("authorizeForm", "logoutform");
         }
 

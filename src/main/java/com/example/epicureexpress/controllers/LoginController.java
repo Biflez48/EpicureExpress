@@ -16,28 +16,33 @@ public class LoginController {
     @PostMapping("/loginconfirm")
     public String loginPost(
             @RequestParam String login,
-            @RequestParam String password
+            @RequestParam String password,
+            @RequestParam String addresspage
     ){
         loginProcessor.setUsername(login);
         loginProcessor.setPassword(password);
         boolean loggedIn = loginProcessor.login();
 
         if (!loggedIn) {
-            return "redirect:/?logsuccess=false";
+            return "redirect:"+addresspage+"?logsuccess=false";
         }
 
-        return "redirect:/";
+        return "redirect:"+addresspage;
     }
 
     @PostMapping("/logoutconfirm")
-    public String logoutPost(){
+    public String logoutPost(
+            @RequestParam String addresspage
+    ){
         boolean loggedOut = loginProcessor.logout();
-        return "redirect:/";
+        return "redirect:"+addresspage;
     }
 
     @PostMapping("/cancelauth")
-    public String cancelPost(){
-        return "redirect:/";
+    public String cancelPost(
+            @RequestParam String addresspage
+    ){
+        return "redirect:"+addresspage;
     }
 
 }
