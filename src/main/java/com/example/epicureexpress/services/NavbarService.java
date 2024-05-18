@@ -20,22 +20,12 @@ public class NavbarService {
         this.categoriesRepository = categoriesRepository;
         this.loggedUserManagementService = loggedUserManagementService;
     }
-    public void getNavbar(Model model, String addressPage, String logsuccess, String registersuccess){
+    public void getNavbar(Model model, String addressPage){
         List<Category> categories = categoriesRepository.findAllCategories();
         model.addAttribute("categories", categories);
 
-        if (logsuccess != null){
-            model.addAttribute("typeFormLog", "exceptauth.html");
-            model.addAttribute("typeFormReg", "authorization.html");
-        }else{
-            if (registersuccess != null){
-                model.addAttribute("typeFormLog", "authorization.html");
-                model.addAttribute("typeFormReg", "exceptauth.html");
-            }else{
-                model.addAttribute("typeFormLog", "authorization.html");
-                model.addAttribute("typeFormReg", "authorization.html");
-            }
-        }
+        model.addAttribute("typeFormLog", "authorization.html");
+        model.addAttribute("typeFormReg", "authorization.html");
         model.addAttribute("namepage", addressPage);
 
         String username = loggedUserManagementService.getUsername();

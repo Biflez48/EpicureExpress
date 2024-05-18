@@ -1,9 +1,13 @@
 package com.example.epicureexpress.controllers;
 
 import com.example.epicureexpress.models.LoginProcessor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import java.util.HashMap;
+import java.util.Map;
 
 @Controller
 public class LoginController {
@@ -14,35 +18,32 @@ public class LoginController {
     }
 
     @PostMapping("/loginconfirm")
-    public String loginPost(
+    public ResponseEntity<Map<String, Object>> loginPost(
             @RequestParam String login,
-            @RequestParam String password,
-            @RequestParam String addresspage
+            @RequestParam String password
     ){
         loginProcessor.setUsername(login);
         loginProcessor.setPassword(password);
         boolean loggedIn = loginProcessor.login();
 
-        if (!loggedIn) {
-            return "redirect:"+addresspage+"?logsuccess=false";
-        }
-
-        return "redirect:"+addresspage;
+        Map<String, Object> response = new HashMap<>();
+        response.put("loggedIn", loggedIn);
+        return ResponseEntity.ok(response);
     }
 
-    @PostMapping("/logoutconfirm")
-    public String logoutPost(
-            @RequestParam String addresspage
-    ){
+    @PostMapping("/logout")
+    public ResponseEntity<Map<String, Object>> logoutPost(){
         boolean loggedOut = loginProcessor.logout();
-        return "redirect:"+addresspage;
+
+        Map<String, Object> response = new HashMap<>();
+        response.put("loggedOut", loggedOut);
+        return ResponseEntity.ok(response);
     }
 
     @PostMapping("/cancelauth")
-    public String cancelPost(
-            @RequestParam String addresspage
-    ){
-        return "redirect:"+addresspage;
+    public ResponseEntity<Map<String, Object>> cancelPost(){
+        Map<String, Object> response = new HashMap<>();
+        response.put("cancelled", true);
+        return ResponseEntity.ok(response);
     }
-
 }

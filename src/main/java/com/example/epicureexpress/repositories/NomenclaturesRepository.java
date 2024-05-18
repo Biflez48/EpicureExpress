@@ -1,6 +1,8 @@
 package com.example.epicureexpress.repositories;
 
+import com.example.epicureexpress.models.Bucket;
 import com.example.epicureexpress.models.Nomenclature;
+import com.example.epicureexpress.services.LoggedUserManagementService;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
@@ -10,9 +12,14 @@ import java.util.List;
 @Repository
 public class NomenclaturesRepository {
     private final JdbcTemplate jdbc;
+    private final LoggedUserManagementService loggedUserManagementService;
 
-    public NomenclaturesRepository(JdbcTemplate jdbc){
+    public NomenclaturesRepository(
+            JdbcTemplate jdbc,
+            LoggedUserManagementService loggedUserManagementService
+    ){
         this.jdbc = jdbc;
+        this.loggedUserManagementService = loggedUserManagementService;
     }
 
     public void addNomenclature(Nomenclature nomenclature){
@@ -68,6 +75,24 @@ public class NomenclaturesRepository {
             rowObject.setPrice(r.getBigDecimal("priceprod"));
             rowObject.setImage(r.getBytes("imgnom"));
             rowObject.setCountPurchase(r.getInt("countpur"));
+
+            int idUs = loggedUserManagementService.getId();
+            if(idUs == 0) {
+                rowObject.setInBucket(false);
+            }else{
+                int idNom = r.getInt("idnom");
+                String sqlBucket = "SELECT idbuc FROM bucket WHERE idnom = " + idNom+" AND idus = "+idUs;
+
+                RowMapper<Bucket> bucketRowMapper = (c, j) -> {
+                    Bucket rowBuck = new Bucket();
+                    rowBuck.setId(c.getInt("idbuc"));
+                    return rowBuck;
+                };
+
+                List<Bucket> buckets = jdbc.query(sqlBucket, bucketRowMapper);
+
+                rowObject.setInBucket(buckets.size() > 0);
+            }
             return rowObject;
         };
 

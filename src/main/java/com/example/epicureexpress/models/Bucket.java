@@ -4,8 +4,6 @@ import java.math.BigDecimal;
 
 public class Bucket {
     private int id;
-    private int idUser;
-    private int idNomenclature;
     private int countProduct;
 
     private byte[] imageProd;
@@ -18,18 +16,6 @@ public class Bucket {
     }
     public int getId(){
         return id;
-    }
-    public void setIdUser(int idUser){
-        this.idUser = idUser;
-    }
-    public int getIdUser(){
-        return idUser;
-    }
-    public void setIdNomenclature(int idNomenclature){
-        this.idNomenclature = idNomenclature;
-    }
-    public int getIdNomenclature(){
-        return idNomenclature;
     }
     public void setCountProduct(int countProduct){
         this.countProduct = countProduct;

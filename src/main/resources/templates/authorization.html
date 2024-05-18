@@ -9,15 +9,14 @@
     <form action="/bucket" method="get">
         <button id="bucket-btn" type="submit" class="btn bucket-btn">Корзина</button>
     </form>
-    <form action="/logoutconfirm" method="post">
-        <input style="display: none" name="addresspage" th:value="${namepage}">
-        <button id="logout-btn" type="submit" class="btn logout-btn">Выход</button>
+    <form id="logout-form">
+        <button id="logout-btn" type="button" onclick="submitLogout()" class="btn logout-btn">Выход</button>
     </form>
 </div>
 
 <div th:fragment="loginoverlay" id="login-overlay" style="display: none;">
     <div id="login-popup">
-        <form action="/loginconfirm" method="post" id="log-form">
+        <form id="log-form">
             <div>
                 <label>Логин:</label>
                 <input type="text" name="login" />
@@ -26,46 +25,38 @@
                 <label>Пароль:</label>
                 <input type="password" name="password" />
             </div>
-            <input style="display: none" name="addresspage" th:value="${namepage}">
             <div>
-                <button type="submit" form="log-form" class="btn">Войти</button>
+                <button type="button" onclick="submitLoginForm()" class="btn">Войти</button>
                 <button id="reg-btn" type="button" class="btn">Регистрация</button>
             </div>
         </form>
-        <form action="/cancelauth" method="post" id="log-cancel">
-            <input style="display: none" name="addresspage" th:value="${namepage}">
-            <button id="cancel-log-btn" type="submit" form="log-cancel" class="btn">Отмена</button>
-        </form>
+        <button id="cancel-log-btn" type="button" onclick="closeLoginForm()" class="btn">Отмена</button>
     </div>
 </div>
 
-    <div th:fragment="regoverlay" id="register-overlay" style="display: none;">
-        <div id="register-popup">
-                <form action="/registerconfirm" method="post" id="reg-form">
-                        <div>
-                                <label>Логин:</label>
-                                <input type="text" name="login" />
-                            </div>
-                        <div>
-                                <label>Пароль:</label>
-                                <input type="password" name="password" />
-                            </div>
-                        <div>
-                                <label>Повтор пароля:</label>
-                                <input type="password" name="repeatPassword" />
-                            </div>
-                    <input style="display: none" name="addresspage" th:value="${namepage}">
-                        <div>
-                                <button type="submit" form="reg-form" class="btn">Зарегистрироваться</button>
-                                <button id="login-reg-btn" type="button" class="btn">Уже есть аккаунт</button>
-                            </div>
-                    </form>
-            <form action="/cancelauth" method="post" id="reg-cancel">
-                <input style="display: none" name="addresspage" th:value="${namepage}">
-                <button id="cancel-reg-btn" type="submit" form="reg-cancel" class="btn">Отмена</button>
-            </form>
+<div th:fragment="regoverlay" id="register-overlay" style="display: none;">
+    <div id="register-popup">
+        <form id="reg-form">
+            <div>
+                <label>Логин:</label>
+                <input type="text" name="login" />
             </div>
+            <div>
+                <label>Пароль:</label>
+                <input type="password" name="password" />
+            </div>
+            <div>
+                <label>Повтор пароля:</label>
+                <input type="password" name="repeatPassword" />
+            </div>
+            <div>
+                <button type="button" onclick="submitRegForm()" class="btn">Зарегистрироваться</button>
+                <button id="login-reg-btn" type="button" class="btn">Уже есть аккаунт</button>
+            </div>
+        </form>
+        <button id="cancel-reg-btn" type="button" onclick="closeRegForm()" class="btn">Отмена</button>
     </div>
+</div>
 
 </body>
 </html>

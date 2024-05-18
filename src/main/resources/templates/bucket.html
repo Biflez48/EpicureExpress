@@ -16,24 +16,116 @@
                 <h3 th:text="${product.nameProd}"></h3>
                 <div>
                     <p th:text="${product.priceProd}"></p>
-                    <p >руб.</p>
+                    <p >руб. (шт.)</p>
                 </div>
                 <div>
-                    <button class="edit-cnt-bucket-btn">-</button>
+                    <button class="edit-cnt-bucket-btn"
+                            id="dec-btn"
+                            th:data-id="${product.id}"
+                            th:text="'-'"
+                            th:disabled="${product.countProduct <= 1}"></button>
 
-                    <button class="edit-cnt-bucket-btn">+</button>
+                    <input type="number"
+                           th:value="${product.countProduct}"
+                           readonly>
+
+                    <button class="edit-cnt-bucket-btn"
+                            id="inc-btn"
+                            th:data-id="${product.id}"
+                            th:text="'+'"></button>
+
                 </div>
-                <button class="delete-from-bucket-btn" >Удалить</button>
+                <button class="delete-from-bucket-btn"
+                        th:data-id="${product.id}"
+                        th:text="'Удалить'"></button>
             </li>
         </ul>
     </div>
 
     <div class="holder"></div>
-    <footer>
-        <h2>купить</h2>
+
+    <footer class="total-price-container">
+        <p>Суммарная цена: <span id="total-price"></span> руб.</p>
+        <button id="checkout-btn">Оформить заказ</button>
     </footer>
+
     <div th:replace="footer.html :: footer"></div>
 
     <script src="../static/script.js"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            function updateTotalPrice() {
+                let totalPrice = 0;
+                $('.products-list li').each(function(){
+                    const price = parseFloat($(this).find('p:eq(0)').text());
+                    const count = parseInt($(this).find('input').val());
+                    totalPrice += price * count;
+                });
+                $('#total-price').text(totalPrice.toFixed(2));
+            }
+
+            $('.edit-cnt-bucket-btn').click(function(){
+                var button = $(this);
+                var productId = button.data('id');
+                var isIncrement = button.text() === '+';
+                var input = button.siblings('input');
+                var currentCount = parseInt(input.val());
+                var newCount = isIncrement ? currentCount + 1 : currentCount - 1;
+
+                if (newCount < 1) {
+                    newCount = 1;
+                }
+
+                $.ajax({
+                    type: 'POST',
+                    url: '/edit-bucket',
+                    data: JSON.stringify({ productId: productId, increment: isIncrement }),
+                    contentType: 'application/json',
+                    success: function(response) {
+                        if (response.success) {
+                            input.val(newCount);
+                            button.siblings('.edit-cnt-bucket-btn').prop('disabled', false);
+                            if (newCount <= 1) {
+                                button.prop('disabled', true);
+                            }
+                            updateTotalPrice();
+                        } else {
+                            alert('Ошибка изменения количества товара');
+                        }
+                    },
+                    error: function() {
+                        alert('Ошибка запроса');
+                    }
+                });
+            });
+
+            $('.delete-from-bucket-btn').click(function(){
+                var button = $(this);
+                var productId = button.data('id');
+                $.ajax({
+                    type: 'POST',
+                    url: '/delete-from-bucket',
+                    data: JSON.stringify({ productId: productId }),
+                    contentType: 'application/json',
+                    success: function(response) {
+                        if (response.success) {
+                            button.closest('li').remove();
+                            updateTotalPrice();
+                        } else {
+                            alert('Ошибка удаления товара из корзины');
+                        }
+                    },
+                    error: function() {
+                        alert('Ошибка запроса');
+                    }
+                });
+            });
+
+            updateTotalPrice();
+        });
+    </script>
+
 </body>
 </html>

@@ -10,6 +10,7 @@ public class Nomenclature {
     private int idType;
     private int countPurchase;
     private String servletId;
+    private boolean inBucket;
 
     public void setId(int id){
         this.id = id;
@@ -52,5 +53,11 @@ public class Nomenclature {
     }
     public String getServletId(){
         return servletId;
+    }
+    public void setInBucket(boolean inBucket){
+        this.inBucket = inBucket;
+    }
+    public boolean getInBucket(){
+        return inBucket;
     }
 }

@@ -1,6 +1,5 @@
 package com.example.epicureexpress.servlets;
 
-import com.example.epicureexpress.models.Nomenclature;
 import com.example.epicureexpress.repositories.NomenclaturesRepository;
 import jakarta.servlet.ServletOutputStream;
 import jakarta.servlet.annotation.WebServlet;
@@ -9,7 +8,6 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
-import java.util.List;
 
 @WebServlet(name = "imgServlet", urlPatterns = "/product/imgServlet")
 public class ImageServlet extends HttpServlet {

@@ -19,7 +19,10 @@
                     <p th:text="${product.price}"></p>
                     <p >руб.</p>
                 </div>
-                <button class="add-to-bucket-btn" >Добавить в корзину</button>
+                <button class="add-to-bucket-btn"
+                        th:data-id="${product.id}"
+                        th:text="${product.inBucket ? 'Уже в корзине' : 'Добавить в корзину'}"
+                        th:disabled="${product.inBucket}"></button>
             </li>
         </ul>
     </div>
@@ -28,5 +31,32 @@
     <footer th:replace="footer.html :: footer"></footer>
 
     <script src="../static/script.js"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $('.add-to-bucket-btn').click(function(){
+                var button = $(this);
+                var productId = button.data('id');
+                $.ajax({
+                    type: 'POST',
+                    url: '/add-to-bucket',
+                    data: JSON.stringify({ productId: productId }),
+                    contentType: 'application/json',
+                    success: function(response) {
+                        if (response.success) {
+                            button.text('Уже в корзине').attr('disabled', true);
+                        } else {
+                            alert('Ошибка добавления товара в корзину');
+                        }
+                    },
+                    error: function() {
+                        alert('Вы не авторизированны!');
+                    }
+                });
+            });
+        });
+    </script>
+
 </body>
 </html>

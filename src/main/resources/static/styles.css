@@ -28,6 +28,8 @@
     #cancel-log-btn{
         background: #ff5c5c;
         transition: all 0.1s ease-out;
+        width: 100%;
+        margin-top: 10px;
     }
 
     #cancel-reg-btn:hover,
@@ -36,6 +38,7 @@
         transition: all 0.1s ease-out;
     }
 
+    #reg-btn,
     #login-reg-btn{
         margin-left: 10px;
     }
@@ -64,6 +67,7 @@
     #login-popup form button,
     #register-popup form button{
         margin-top: 10px;
+        width: -webkit-fill-available;
     }
 
     #login-popup form div,
@@ -77,6 +81,11 @@
         font-size: 20px;
         margin-bottom: 10px;
         margin-left: 10px;
+    }
+
+    #login-popup form div label,
+    #register-popup form div label{
+        margin-left: auto;
     }
 
     .except-input{
@@ -456,6 +465,7 @@
 
     .bucket-container ul li div p{
         margin-left: 5px;
+        width: max-content;
     }
 
     .bucket-container ul li div input{

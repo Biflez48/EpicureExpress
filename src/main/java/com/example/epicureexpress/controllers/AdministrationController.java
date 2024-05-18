@@ -1,8 +1,6 @@
 package com.example.epicureexpress.controllers;
 
-import com.example.epicureexpress.models.Category;
 import com.example.epicureexpress.models.Nomenclature;
-import com.example.epicureexpress.repositories.CategoriesRepository;
 import com.example.epicureexpress.repositories.NomenclaturesRepository;
 import com.example.epicureexpress.services.LoggedUserManagementService;
 import com.example.epicureexpress.services.NavbarService;
@@ -15,7 +13,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.*;
 import java.math.BigDecimal;
-import java.util.List;
 
 @Controller
 public class AdministrationController {
@@ -38,12 +35,12 @@ public class AdministrationController {
     public String administrateGet(
             Model model
     ){
-        String username = loggedUserManagementService.getUsername();
+        int userRole = loggedUserManagementService.getIdRole();
 
-        if(username == null){
+        if(userRole != 1){
             return "redirect:/";
         }else{
-            navbarService.getNavbar(model,"/bucket",null,null);
+            navbarService.getNavbar(model,"/bucket");
             model.addAttribute("authorizeForm", "logoutform");
         }
 

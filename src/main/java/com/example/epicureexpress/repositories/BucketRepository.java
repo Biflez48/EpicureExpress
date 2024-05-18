@@ -1,7 +1,6 @@
 package com.example.epicureexpress.repositories;
 
 import com.example.epicureexpress.models.Bucket;
-import com.example.epicureexpress.models.Nomenclature;
 import com.example.epicureexpress.services.LoggedUserManagementService;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
@@ -41,6 +40,25 @@ public class BucketRepository {
         };
 
         return jdbc.query(sql, nomenclatureRowMapper);
+    }
+
+    public void addToBucket(int productId){
+        int userId = loggedUserManagementService.getId();
+
+        String sql = "INSERT INTO bucket (idus,idnom,cntprod) VALUES (?,?,?)";
+
+        jdbc.update(sql, userId, productId, 1);
+    }
+
+    public void updateProductCount(int userId, int productId, boolean increment) {
+        String sql = "UPDATE bucket SET cntprod = cntprod + ? WHERE idus = ? AND idnom = ?";
+        int change = increment ? 1 : -1;
+        jdbc.update(sql, change, userId, productId);
+    }
+
+    public void deleteProductFromBucket(int userId, int productId) {
+        String sql = "DELETE FROM bucket WHERE idus = ? AND idnom = ?";
+        jdbc.update(sql, userId, productId);
     }
 
 }

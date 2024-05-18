@@ -39,7 +39,9 @@ public class LoginProcessor {
 
     public boolean logout(){
         boolean logoutResult = false;
+        loggedUserManagementService.setId(0);
         loggedUserManagementService.setUsername(null);
+        loggedUserManagementService.setIdRole(0);
         logoutResult = true;
         return logoutResult;
     }

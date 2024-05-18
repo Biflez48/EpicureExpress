@@ -1,6 +1,5 @@
 package com.example.epicureexpress.repositories;
 
-import com.example.epicureexpress.models.Category;
 import com.example.epicureexpress.models.User;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
@@ -33,12 +32,7 @@ public class UsersRepository {
 
     public void addUser(String login, String password){
         String sql = "INSERT INTO users (loginus, passwordus, idrol) VALUES ('"+login+"','"+password+"',2)";
-/*
-        User newUser = new User();
-        newUser.setLogin(login);
-        newUser.setPassword(password);
-        newUser.setIdRol(2);
-        */
-        jdbc.update(sql/*,newUser*/);
+
+        jdbc.update(sql);
     }
 }
