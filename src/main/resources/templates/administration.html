@@ -4,52 +4,63 @@
     <meta charset="UTF-8">
     <title>Страница администратора</title>
     <link rel="stylesheet" href="../static/styles.css">
+    <link rel="stylesheet" href="../static/AdminStyles.css">
 </head>
 
 <body>
+
     <div th:replace="navbar.html :: navbar"></div>
 
-    <form action="/uploadimage" method="post" enctype="multipart/form-data">
+    <form action="/uploadimage" method="post" enctype="multipart/form-data" class="admin-product-add-form">
 
-        <input type="file" id="image-input" name="file">
-        <button id="select-image-btn" class="select-image-btn">Выбрать изображение</button>
-        <div class="image-container" id="image-output"></div>
+        <div class="admin-img-add">
+            <div class="admin-add-image-container" id="image-output"></div>
+            <input type="file" id="image-input" name="file">
+            <button id="select-image-btn" class="select-image-btn">Выбрать изображение</button>
+        </div>
 
-        <label>Название</label>
-        <input type="text" name="name"/>
+        <div class="admin-prod-param">
+            <div class="admin-prod-name">
+                <label>Название товара</label>
+                <input type="text" name="name" required/>
+            </div>
 
-        <label>Цена</label>
-        <input type="number" name="price"/>
+            <div class="admin-prod-row">
+                <label>Цена товара</label>
+                <input type="number" name="price" step="0.01" required/>
+            </div>
 
-        <button type="submit">Сохранить и добавить</button>
+            <div class="admin-prod-row">
+                <label>Тип товара</label>
+                <select name="type" id="type-select" required>
+                    <option th:each="type : ${types}" th:value="${type.id}" th:text="${type.name}"></option>
+                </select>
+            </div>
+
+            <div class="admin-prod-row">
+                <label>Категория товара</label>
+                <select id="category-select">
+                    <option th:each="category : ${categories}" th:value="${category.id}" th:text="${category.name}"></option>
+                </select>
+            </div>
+            <button type="button" id="add-category-btn">Добавить категорию</button>
+
+            <div class="admin-prod-row">
+                <label>Подкл. катег.</label>
+                <div id="selected-categories">
+                    <input type="text" name="categories" style="display: none;">
+                </div>
+            </div>
+
+            <button type="submit">Сохранить и добавить</button>
+        </div>
 
     </form>
 
-    <script>
-        const imageInput = document.getElementById('image-input');
-        const selectImageBtn = document.getElementById('select-image-btn');
-        const imageOutput = document.getElementById('image-output');
-        selectImageBtn.addEventListener('click', () => {
-            imageInput.click();
-        });
-        imageInput.addEventListener('change', (e) => {
-            if (e.target.files && e.target.files[0]) {
-                const file = e.target.files[0];
-                const reader = new FileReader();
-
-                reader.onload = (event) => {
-                    imageOutput.style.backgroundImage = `url(${event.target.result})`;
-                };
-
-                reader.readAsDataURL(file);
-            }
-        });
-    </script>
-
     <div class="holder"></div>
-
     <div th:replace="footer.html :: footer"></div>
 
-    <script src="../static/script.js"></script>
+    <script src="../static/NavbarScript.js"></script>
+    <script src="../static/AdminScript.js"></script>
 </body>
 </html>

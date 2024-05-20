@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<button th:fragment="addtobucketbtn"
+        class="add-to-bucket-btn"
+        th:data-id="${product.id}"
+        th:text="${product.inBucket ? 'Уже в корзине' : 'Добавить в корзину'}"
+        th:disabled="${product.inBucket}"></button>
+
+<button th:fragment="deleteprodbtn"
+        class="delete-prod-btn"
+        th:data-id="${product.id}">Удалить</button>
+
+</body>
+</html>

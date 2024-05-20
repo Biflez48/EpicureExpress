@@ -22,20 +22,32 @@ public class NomenclaturesRepository {
         this.loggedUserManagementService = loggedUserManagementService;
     }
 
-    public void addNomenclature(Nomenclature nomenclature){
-
+    public int addNomenclature(Nomenclature nomenclature) {
         byte[] imageData = nomenclature.getImage();
 
-        String sql = "INSERT INTO nomenclatures (idtype,namenom,priceprod,imgnom,countpur) VALUES (?,?,?,?,?)";
+        String sql = "INSERT INTO nomenclatures (idtype, namenom, priceprod, imgnom, countpur) VALUES (?, ?, ?, ?, ?) RETURNING idnom";
 
-        jdbc.update(
+        return jdbc.queryForObject(
                 sql,
-                nomenclature.getIdType(),
-                nomenclature.getName(),
-                nomenclature.getPrice(),
-                imageData,
-                nomenclature.getCountPurchase()
+                new Object[]{
+                        nomenclature.getIdType(),
+                        nomenclature.getName(),
+                        nomenclature.getPrice(),
+                        imageData,
+                        nomenclature.getCountPurchase()
+                },
+                Integer.class
         );
+    }
+
+    public void addNomenclatureCategory(int idNom, int idCateg){
+        String sql = "INSERT INTO listcateg (idnom, idcateg) VALUES (?, ?)";
+        jdbc.update(sql, idNom, idCateg);
+    }
+
+    public void deleteNomenclatureById(int idNom){
+        String sql = "DELETE FROM nomenclatures WHERE idnom = "+idNom;
+        jdbc.update(sql);
     }
 
     public byte[] getImgById(int idNom){

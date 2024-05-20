@@ -41,7 +41,7 @@ public class BucketController {
         if(username == null){
             return "redirect:/";
         }else{
-            navbarService.getNavbar(model,"/bucket");
+            navbarService.getNavbar(model);
             model.addAttribute("authorizeForm", "logoutform");
         }
 

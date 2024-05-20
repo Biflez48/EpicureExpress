@@ -22,7 +22,7 @@ public class MainPageController {
     public String mainGet(
             Model model
     ){
-        navbarService.getNavbar(model,"/");
+        navbarService.getNavbar(model);
 
         return "main.html";
     }

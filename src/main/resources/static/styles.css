@@ -106,7 +106,7 @@
         flex-grow: 1;
     }
 
-    .image-container {
+    .admin-add-image-container {
         border: 1px solid #ccc;
         width: 300px;
         height: 200px;
@@ -335,14 +335,23 @@
     }
 
     .footer {
+        display: flex;
+        justify-content: center;
+        align-items: center;
         background-color: #232323;
         text-align: left;
-        padding: 10px 10px 30px 10px;
+        padding: 30px 10px 30px 10px;
     }
 
-    .footer a {
-        color: white;
+    .footer p {
+        color: #a1a1a1;
         font-size: 16px;
+    }
+
+    .footer img {
+        margin-top: -12px;
+        width: 30px;
+        height: 30px;
     }
 
     .contact-link {
@@ -353,7 +362,7 @@
     .logo-img {
         width: 40px;
         height: 40px;
-        margin-bottom: -10px;
+        margin-bottom: -12px;
         margin-right: 15px;
     }
 
@@ -383,7 +392,7 @@
         width: 170px;
         background: #333;
         border-radius: 10px;
-        border: 5px solid #015b3b;
+        border: 5px solid #753e00;
         padding: 10px;
         color: white;
         margin: 10px;
@@ -418,14 +427,26 @@
         margin-top: 15px;
     }
 
+    .delete-prod-btn,
     .add-to-bucket-btn{
-        color: #006506;
-        background: #ff7a7a;
+        color: #b6b6b6;
+        background: #8f4c00;
         border-radius: 4px;
         width: 100%;
         height: 27px;
         margin-top: 10px;
         align-self: center;
+        border: 3px solid #753e00;
+    }
+
+    .delete-prod-btn:hover,
+    .add-to-bucket-btn:hover{
+        background: #753e00;
+    }
+
+    .delete-prod-btn:disabled,
+    .add-to-bucket-btn:disabled{
+        background: rgba(0, 0, 0, 0);
     }
 
     .bucket-container{
@@ -438,7 +459,7 @@
         flex-wrap: nowrap;
         background: #333;
         border-radius: 10px;
-        border: 5px solid #015b3b;
+        border: 5px solid #753e00;
         padding: 10px;
         color: white;
         margin: 10px;
@@ -453,10 +474,11 @@
 
     .bucket-container ul li div,
     .bucket-container ul li h3,
-    .bucket-container ul li button{
+    .delete-from-bucket-btn{
         display: flex;
         align-self: center;
         margin-left: 10px;
+        border-radius: 7px;
     }
 
     .bucket-container ul li h3{
@@ -468,18 +490,69 @@
         width: max-content;
     }
 
-    .bucket-container ul li div input{
-        height: 100%;
-        padding: 8px;
-        width: 50px;
-    }
-
+    .bucket-container ul li div input,
     .bucket-container ul li button{
         height: 100%;
         padding: 8px;
-        color: #006506;
-        background: #ff7a7a;
+        color: #b6b6b6;
+        background: #8f4c00;
+        border: none;
+    }
+
+    .bucket-container ul li div input,
+    .edit-cnt-bucket-btn{
+        width: 32px;
+    }
+
+    .bucket-container ul li div input{
+        width: 40px;
+    }
+
+    .edit-cnt-bucket-btn{
+        height: 100%;
+        margin-left: 0;
+    }
+
+    .decr-btn{
+        border-bottom-left-radius: 7px;
+        border-top-left-radius: 7px;
+    }
+
+    .incr-btn{
+        border-bottom-right-radius: 7px;
+        border-top-right-radius: 7px;
+    }
+
+    .total-price-container button:hover,
+    .bucket-container ul li button:hover{
+        background: #753e00;
+    }
+
+    .total-price-container{
+        display: flex;
+        flex-wrap: nowrap;
+        background: #333;
+        color: white;
+        padding: 20px 30px;
+        margin: 0 150px;
+        justify-content: space-between;
+        border-top-left-radius: 15px;
+        border-top-right-radius: 15px;
+    }
+
+    .total-price-container button{
+        height: 100%;
+        padding: 10px;
+        font-size: 20px;
+        color: #b6b6b6;
+        background: #8f4c00;
+        border: none;
         border-radius: 7px;
+    }
+
+    .total-price-container p{
+        font-size: 25px;
+        align-content: center;
     }
 
 }

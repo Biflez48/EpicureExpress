@@ -3,12 +3,19 @@
 
 <body>
 
+<form th:fragment="adminbtn" action="/administrate" method="get">
+    <button id="admin-btn" type="submit" class="btn login-btn">Управление</button>
+</form>
+
+<form th:fragment="notadmin" action="/bucket" method="get">
+    <button id="bucket-btn" type="submit" class="btn bucket-btn">Корзина</button>
+</form>
+
 <button th:fragment="loginbth" id="login-btn" class="btn login-btn">Вход</button>
 
 <div class="logoutform" th:fragment="logoutform">
-    <form action="/bucket" method="get">
-        <button id="bucket-btn" type="submit" class="btn bucket-btn">Корзина</button>
-    </form>
+    <div th:replace="authorization.html :: ${adminButton}"></div>
+
     <form id="logout-form">
         <button id="logout-btn" type="button" onclick="submitLogout()" class="btn logout-btn">Выход</button>
     </form>

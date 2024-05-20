@@ -16,6 +16,7 @@ function toggleMenu() {
 hamburgerBtn.addEventListener('click', toggleMenu);
 
 
+const adminBtn = document.getElementById('admin-btn');
 const loginBtn = document.getElementById('login-btn');
 const loginOverlay = document.getElementById('login-overlay');
 const loginPopup = document.getElementById('login-popup');
@@ -26,7 +27,7 @@ const cancelLogBtn = document.getElementById('cancel-log-btn');
 const cancelRegBtn = document.getElementById('cancel-reg-btn');
 const loginRegBtn = document.getElementById('login-reg-btn');
 
-// Event listeners
+
 loginBtn.addEventListener('click', () => {
     loginOverlay.style.display = 'block';
     loginPopup.style.display = 'block';

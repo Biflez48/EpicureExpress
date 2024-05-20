@@ -10,7 +10,7 @@
     <div th:replace="navbar.html :: navbar"></div>
 
     <div class="products-container">
-        <h2>Вот что мы нашли:</h2>
+        <h2>Вот что удалось найти:</h2>
         <ul class="products-list">
             <li th:each="product: ${productsView}">
                 <img th:src="${product.servletId}"/>
@@ -19,10 +19,7 @@
                     <p th:text="${product.price}"></p>
                     <p >руб.</p>
                 </div>
-                <button class="add-to-bucket-btn"
-                        th:data-id="${product.id}"
-                        th:text="${product.inBucket ? 'Уже в корзине' : 'Добавить в корзину'}"
-                        th:disabled="${product.inBucket}"></button>
+                <button th:replace="prodcontrols.html :: ${typebutton}"></button>
             </li>
         </ul>
     </div>
@@ -30,33 +27,9 @@
     <div class="holder"></div>
     <footer th:replace="footer.html :: footer"></footer>
 
-    <script src="../static/script.js"></script>
-
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script>
-        $(document).ready(function(){
-            $('.add-to-bucket-btn').click(function(){
-                var button = $(this);
-                var productId = button.data('id');
-                $.ajax({
-                    type: 'POST',
-                    url: '/add-to-bucket',
-                    data: JSON.stringify({ productId: productId }),
-                    contentType: 'application/json',
-                    success: function(response) {
-                        if (response.success) {
-                            button.text('Уже в корзине').attr('disabled', true);
-                        } else {
-                            alert('Ошибка добавления товара в корзину');
-                        }
-                    },
-                    error: function() {
-                        alert('Вы не авторизированны!');
-                    }
-                });
-            });
-        });
-    </script>
+    <script src="../static/ProductScript.js"></script>
+    <script src="../static/NavbarScript.js"></script>
 
 </body>
 </html>

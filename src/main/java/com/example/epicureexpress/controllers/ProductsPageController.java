@@ -43,13 +43,20 @@ public class ProductsPageController {
             @RequestParam(required = false) String selectedcategory,
             Model model
     ){
-        navbarService.getNavbar(model,"/products");
+        navbarService.getNavbar(model);
         if(selectedtype==null && selectedcategory==null){
             return "redirect:/";
         }
 
         List<Nomenclature> nomenclatures = nomenclaturesRepository.findNomenclature(selectedtype,selectedcategory);
         model.addAttribute("productsView", nomenclatures);
+
+        int userIdRole = loggedUserManagementService.getIdRole();
+        if(userIdRole == 1){
+            model.addAttribute("typebutton", "deleteprodbtn");
+        }else{
+            model.addAttribute("typebutton", "addtobucketbtn");
+        }
 
         return "products.html";
     }
@@ -67,6 +74,30 @@ public class ProductsPageController {
 
         try {
             bucketRepository.addToBucket(productId);
+
+            Map<String, Object> response = new HashMap<>();
+            response.put("success", true);
+            return ResponseEntity.ok(response);
+        } catch (Exception e) {
+            Map<String, Object> response = new HashMap<>();
+            response.put("success", false);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
+        }
+    }
+
+    @PostMapping("/delete-prod")
+    public ResponseEntity<Map<String, Object>> deleteProduct(@RequestBody Map<String, Object> payload) {
+        int idRole = loggedUserManagementService.getIdRole();;
+        if(idRole != 1){
+            Map<String, Object> response = new HashMap<>();
+            response.put("success", false);
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(response);
+        }
+
+        int productId = (Integer) payload.get("productId");
+
+        try {
+            nomenclaturesRepository.deleteNomenclatureById(productId);
 
             Map<String, Object> response = new HashMap<>();
             response.put("success", true);

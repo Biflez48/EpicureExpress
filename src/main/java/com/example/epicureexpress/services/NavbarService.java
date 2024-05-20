@@ -20,20 +20,22 @@ public class NavbarService {
         this.categoriesRepository = categoriesRepository;
         this.loggedUserManagementService = loggedUserManagementService;
     }
-    public void getNavbar(Model model, String addressPage){
+    public void getNavbar(Model model){
         List<Category> categories = categoriesRepository.findAllCategories();
         model.addAttribute("categories", categories);
 
-        model.addAttribute("typeFormLog", "authorization.html");
-        model.addAttribute("typeFormReg", "authorization.html");
-        model.addAttribute("namepage", addressPage);
-
         String username = loggedUserManagementService.getUsername();
+        int userRole = loggedUserManagementService.getIdRole();
 
         if(username == null){
             model.addAttribute("authorizeForm", "loginbth");
         }else{
             model.addAttribute("authorizeForm", "logoutform");
+            if(userRole == 1){
+                model.addAttribute("adminButton", "adminbtn");
+            }else{
+                model.addAttribute("adminButton", "notadmin");
+            }
         }
     }
 }

@@ -1,7 +1,9 @@
 package com.example.epicureexpress.controllers;
 
 import com.example.epicureexpress.models.Nomenclature;
+import com.example.epicureexpress.repositories.CategoriesRepository;
 import com.example.epicureexpress.repositories.NomenclaturesRepository;
+import com.example.epicureexpress.repositories.TypesRepository;
 import com.example.epicureexpress.services.LoggedUserManagementService;
 import com.example.epicureexpress.services.NavbarService;
 import org.springframework.stereotype.Controller;
@@ -20,15 +22,21 @@ public class AdministrationController {
     private final LoggedUserManagementService loggedUserManagementService;
     private final NomenclaturesRepository nomenclaturesRepository;
     private final NavbarService navbarService;
+    private final TypesRepository typesRepository;
+    private final CategoriesRepository categoriesRepository;
 
     public AdministrationController(
             LoggedUserManagementService loggedUserManagementService,
             NomenclaturesRepository nomenclaturesRepository,
-            NavbarService navbarService
+            NavbarService navbarService,
+            TypesRepository typesRepository,
+            CategoriesRepository categoriesRepository
     ){
         this.loggedUserManagementService = loggedUserManagementService;
         this.nomenclaturesRepository = nomenclaturesRepository;
         this.navbarService = navbarService;
+        this.typesRepository = typesRepository;
+        this.categoriesRepository = categoriesRepository;
     }
 
     @GetMapping("/administrate")
@@ -40,8 +48,10 @@ public class AdministrationController {
         if(userRole != 1){
             return "redirect:/";
         }else{
-            navbarService.getNavbar(model,"/bucket");
+            navbarService.getNavbar(model);
             model.addAttribute("authorizeForm", "logoutform");
+            model.addAttribute("types", typesRepository.findAllTypes());
+            model.addAttribute("categories", categoriesRepository.findAllCategories());
         }
 
         return "administration.html";
@@ -51,17 +61,26 @@ public class AdministrationController {
     public String uploadImagePost(
             @RequestParam("file") MultipartFile file,
             @RequestParam String name,
-            @RequestParam String price
+            @RequestParam String price,
+            @RequestParam int type,
+            @RequestParam(required = false) String categories
     ) throws IOException {
 
         Nomenclature nomenclature = new Nomenclature();
+
         nomenclature.setImage(file.getBytes());
         nomenclature.setName(name);
         nomenclature.setPrice(new BigDecimal(price));
-        nomenclature.setCountPurchase(0);
-        nomenclature.setIdType(1);
+        nomenclature.setIdType(type);
 
-        nomenclaturesRepository.addNomenclature(nomenclature);
+        int newId = nomenclaturesRepository.addNomenclature(nomenclature);
+
+        if (categories != null && !categories.isEmpty()) {
+            String[] categoryIds = categories.split(",");
+            for (String categoryId : categoryIds) {
+                nomenclaturesRepository.addNomenclatureCategory(newId, Integer.parseInt(categoryId));
+            }
+        }
 
         return "redirect:/administrate";
     }
