@@ -67,4 +67,28 @@ $(document).ready(function(){
     });
 
     updateTotalPrice();
+
+    const checkoutBtn = document.getElementById('checkout-btn');
+    const orderOverlay = document.getElementById('order-overlay');
+    const orderPopup = document.getElementById('order-popup');
+    const cancelOrderBtn = document.getElementById('cancel-order-btn');
+
+    if (checkoutBtn) {
+        checkoutBtn.addEventListener('click', () => {
+            console.log('Checkout button clicked');
+            orderOverlay.style.display = 'block';
+            orderPopup.style.display = 'block';
+        });
+    }
+
+    if (cancelOrderBtn) {
+        cancelOrderBtn.addEventListener('click', closeOrderForm);
+    }
+
+    function closeOrderForm() {
+        orderOverlay.style.display = 'none';
+        orderPopup.style.display = 'none';
+    }
 });
+
+

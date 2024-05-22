@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 
 public class Bucket {
     private int id;
+    private int idBucket;
     private int countProduct;
 
     private byte[] imageProd;
@@ -16,6 +17,12 @@ public class Bucket {
     }
     public int getId(){
         return id;
+    }
+    public void setIdBucket(int idBucket) {
+        this.idBucket = idBucket;
+    }
+    public int getIdBucket() {
+        return idBucket;
     }
     public void setCountProduct(int countProduct){
         this.countProduct = countProduct;

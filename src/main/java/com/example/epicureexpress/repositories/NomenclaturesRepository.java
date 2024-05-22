@@ -110,4 +110,11 @@ public class NomenclaturesRepository {
 
         return jdbc.query(sql, nomenclatureRowMapper);
     }
+
+    public void increaseCountPurchase(List<Bucket> products){
+        for (Bucket product:products) {
+            String sql = "UPDATE nomenclatures SET countpur = countpur + ? WHERE idnom = ?";
+            jdbc.update(sql, product.getCountProduct(),product.getId());
+        }
+    }
 }

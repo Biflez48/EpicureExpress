@@ -26,11 +26,12 @@ public class BucketRepository {
 
         int idUs = loggedUserManagementService.getId();
 
-        String sql = "SELECT n.*, b.cntprod FROM nomenclatures n JOIN bucket b ON n.idnom = b.idnom WHERE b.idus = "+idUs;
+        String sql = "SELECT n.*, b.cntprod, b.idbuc FROM nomenclatures n JOIN bucket b ON n.idnom = b.idnom WHERE b.idus = "+idUs;
 
         RowMapper<Bucket> nomenclatureRowMapper = (r, i) -> {
             Bucket rowObject = new Bucket();
             rowObject.setId(r.getInt("idnom"));
+            rowObject.setIdBucket(r.getInt("idbuc"));
             rowObject.setServletId("/product/imgServlet?id="+r.getInt("idnom"));
             rowObject.setNameProd(r.getString("namenom"));
             rowObject.setPriceProd(r.getBigDecimal("priceprod"));
@@ -59,6 +60,11 @@ public class BucketRepository {
     public void deleteProductFromBucket(int userId, int productId) {
         String sql = "DELETE FROM bucket WHERE idus = ? AND idnom = ?";
         jdbc.update(sql, userId, productId);
+    }
+
+    public void deleteProductsByUserId(int userId){
+        String sql = "DELETE FROM bucket WHERE idus = ?";
+        jdbc.update(sql, userId);
     }
 
 }

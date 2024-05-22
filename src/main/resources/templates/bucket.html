@@ -44,6 +44,32 @@
 
     <div class="holder"></div>
 
+    <div id="order-overlay" style="display: none;">
+        <div id="order-popup">
+            <form action="/orderconfirm" method="post" id="order-form">
+                <div>
+                    <label>Имя получателя:</label>
+                    <input type="text" name="name"/>
+                </div>
+                <div>
+                    <label>Адрес доставки:</label>
+                    <input type="text" name="address"/>
+                </div>
+                <div>
+                    <label>Способ оплаты:</label>
+                    <select id="category-select" name="payment">
+                        <option value="card">По карте</option>
+                        <option value="cash">Наличкой в момент выдачи</option>
+                    </select>
+                </div>
+                <div>
+                    <button type="submit" class="btn">Подтвердить</button>
+                </div>
+                <button id="cancel-order-btn" type="button" class="btn">Отмена</button>
+            </form>
+        </div>
+    </div>
+
     <footer class="total-price-container">
         <p>Суммарная цена: <span id="total-price"></span> руб.</p>
         <button id="checkout-btn">Оформить заказ</button>
