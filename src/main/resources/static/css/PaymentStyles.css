@@ -1,0 +1,22 @@
+.paymentpage{
+    background-image: none;
+}
+
+.paymentpage form{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.paymentpage form button{
+    margin-top: 10px;
+    width: 10%;
+    height: 20px;
+}
+

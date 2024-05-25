@@ -1,0 +1,45 @@
+.history-container {
+    margin-left: 150px;
+    margin-right: 150px;
+}
+
+.history-container ul li {
+    display: flex;
+    flex-wrap: nowrap;
+    background: #333;
+    border-radius: 10px;
+    border: 5px solid #753e00;
+    padding: 10px;
+    color: white;
+    margin: 10px;
+}
+
+.history-container ul{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.history-container ul li{
+    flex-wrap: wrap;
+    flex-direction: column;
+    max-width: max-content;
+}
+
+.history-container ul li div{
+    display: flex;
+    flex-wrap: nowrap;
+    margin-bottom: 5px;
+    margin-top: 5px;
+}
+
+.history-container ul li div h3,
+.history-container ul li div div,
+.history-container ul li div p:first-child{
+    margin-right: 10px;
+}
+
+.history-container ul li div div{
+    display: flex;
+    flex-direction: column;
+}

@@ -32,6 +32,7 @@ public class LoginProcessor {
             loggedUserManagementService.setUsername(gettingUsers.get(0).getLogin());
             loggedUserManagementService.setIdRole(gettingUsers.get(0).getIdRol());
             loggedUserManagementService.setId(gettingUsers.get(0).getId());
+            loggedUserManagementService.setRoleName(gettingUsers.get(0).getRoleName());
             loginResult = true;
         }
         return loginResult;
@@ -42,6 +43,7 @@ public class LoginProcessor {
         loggedUserManagementService.setId(0);
         loggedUserManagementService.setUsername(null);
         loggedUserManagementService.setIdRole(0);
+        loggedUserManagementService.setRoleName(null);
         logoutResult = true;
         return logoutResult;
     }

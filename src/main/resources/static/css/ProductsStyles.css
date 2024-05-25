@@ -1,0 +1,78 @@
+.products-container{
+    margin: 10px 100px 0 100px;
+}
+
+.products-container h2{
+    color: white;
+    margin-bottom: 30px;
+}
+
+.products-container ul{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.products-container ul li{
+    display: flex;
+    flex-direction: column;
+    width: 170px;
+    background: #333;
+    border-radius: 10px;
+    border: 5px solid #753e00;
+    padding: 10px;
+    color: white;
+    margin: 10px;
+}
+
+.products-container ul li img{
+    align-self: center;
+    border-radius: 7px;
+    width: 90%;
+}
+
+.products-container ul li div,
+.products-container ul li h3{
+    display: flex;
+    justify-content: center;
+    align-self: center;
+    margin-top: 5px;
+}
+
+.products-container ul li div{
+    width: 90%;
+}
+
+.products-container ul li div p{
+    margin-left: 5px;
+}
+
+.products-container ul li h3{
+    border-bottom: 2px solid white;
+    width: 100%;
+    margin-bottom: 5px;
+    margin-top: 15px;
+}
+
+.delete-prod-btn,
+.add-to-bucket-btn{
+    color: #b6b6b6;
+    background: #8f4c00;
+    border-radius: 4px;
+    width: 100%;
+    height: 27px;
+    margin-top: 10px;
+    align-self: center;
+    border: 3px solid #753e00;
+}
+
+.delete-prod-btn:hover,
+.add-to-bucket-btn:hover{
+    background: #753e00;
+}
+
+.delete-prod-btn:disabled,
+.add-to-bucket-btn:disabled{
+    background: rgba(0, 0, 0, 0);
+}
+

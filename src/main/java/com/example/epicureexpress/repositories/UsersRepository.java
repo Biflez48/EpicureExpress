@@ -16,7 +16,7 @@ public class UsersRepository {
     }
 
     public List<User> findUser(String login, String password){
-        String sql = "SELECT * FROM users WHERE loginus = '"+login+"' AND passwordus = '"+password+"'";
+        String sql = "SELECT u.*,r.namerol FROM users u JOIN roles r ON u.idrol = r.idrol WHERE loginus = '"+login+"' AND passwordus = '"+password+"'";
 
         RowMapper<User> userRowMapper = (r, i) -> {
             User rowObject = new User();
@@ -24,6 +24,7 @@ public class UsersRepository {
             rowObject.setLogin(r.getString("loginus"));
             rowObject.setPassword(r.getString("passwordus"));
             rowObject.setIdRol(r.getInt("idrol"));
+            rowObject.setRoleName(r.getString("namerol"));
             return rowObject;
         };
 

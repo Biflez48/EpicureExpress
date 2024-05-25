@@ -25,17 +25,13 @@ public class NavbarService {
         model.addAttribute("categories", categories);
 
         String username = loggedUserManagementService.getUsername();
-        int userRole = loggedUserManagementService.getIdRole();
+        String userRole = loggedUserManagementService.getRoleName();
 
         if(username == null){
             model.addAttribute("authorizeForm", "loginbth");
         }else{
             model.addAttribute("authorizeForm", "logoutform");
-            if(userRole == 1){
-                model.addAttribute("adminButton", "adminbtn");
-            }else{
-                model.addAttribute("adminButton", "notadmin");
-            }
+            model.addAttribute("adminButton", userRole);
         }
     }
 }

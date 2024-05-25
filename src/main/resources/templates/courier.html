@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Страница курьера</title>
+    <link rel="stylesheet" href="../static/css/styles.css">
+    <link rel="stylesheet" href="../static/css/CourierStyles.css">
+    <link rel="stylesheet" href="../static/css/AuthorizationStyles.css">
+    <link rel="stylesheet" href="../static/css/NavbarStyles.css">
+    <link rel="stylesheet" href="../static/css/FooterStyles.css">
+</head>
+<body>
+
+    <div th:replace="navbar.html :: navbar"></div>
+
+    <div class="history-container">
+        <ul class="orders-list">
+            <li th:each="order: ${ordersView}">
+                <div>
+                    <h3 >Заказ номер: </h3>
+                    <h3 th:text="${order.id}"></h3>
+                </div>
+
+                <div>
+                    <div>
+                        <p >Дата заказа: </p>
+                        <p th:text="${order.dateOrder}"></p>
+                    </div>
+                    <div>
+                        <p >Статус: </p>
+                        <p th:text="${order.status}"></p>
+                    </div>
+                </div>
+
+                <div>
+                    <p >Сумма заказа: </p>
+                    <p th:text="${order.sumPrice}"></p>
+                    <p >руб.</p>
+                </div>
+                <form action="/nextstatus" method="post">
+                    <input type="number" name="idorder" th:value="${order.id}" style="display: none;" />
+                    <button type="submit" >Следующий этап заказа</button>
+                </form>
+            </li>
+        </ul>
+    </div>
+
+    <div class="holder"></div>
+    <div th:replace="footer.html :: footer"></div>
+
+    <script src="../static/scripts/NavbarScript.js"></script>
+
+</body>
+</html>

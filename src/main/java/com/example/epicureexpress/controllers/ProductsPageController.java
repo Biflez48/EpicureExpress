@@ -48,6 +48,11 @@ public class ProductsPageController {
             return "redirect:/";
         }
 
+        String userRole = loggedUserManagementService.getRoleName();
+        if(userRole != null && userRole.equals("courier")){
+            return "redirect:/courier";
+        }
+
         List<Nomenclature> nomenclatures = nomenclaturesRepository.findNomenclature(selectedtype,selectedcategory);
         model.addAttribute("productsView", nomenclatures);
 

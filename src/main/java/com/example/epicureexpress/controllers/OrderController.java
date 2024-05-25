@@ -49,8 +49,8 @@ public class OrderController {
     @GetMapping("/makeorder")
     public String makeOrderGet(){
 
-        int idOrder = ordersRepository.AddOrder();
         List<Bucket> products = bucketRepository.findNomenclatures();
+        int idOrder = ordersRepository.AddOrder(products);
 
         nomenclaturesRepository.increaseCountPurchase(products);
         prodsOrderRepository.addProducts(idOrder,products);

@@ -61,3 +61,16 @@
 .category-item button{
     margin-left: 8px;
 }
+
+.admin-add-image-container {
+    border: 1px solid #ccc;
+    width: 300px;
+    height: 200px;
+    background-size: cover;
+    background-position: center;
+}
+
+.select-image-btn{
+    display: none;
+}
+

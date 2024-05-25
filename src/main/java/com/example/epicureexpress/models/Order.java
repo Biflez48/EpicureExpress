@@ -1,12 +1,15 @@
 package com.example.epicureexpress.models;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
 public class Order {
     private int id;
     private int idStatus;
+    private String status;
     private int idUser;
     private Date dateOrder;
+    private BigDecimal sumPrice;
 
     public void setId(int id) {
         this.id = id;
@@ -20,6 +23,12 @@ public class Order {
     public int getIdStatus() {
         return idStatus;
     }
+    public void setStatus(String status) {
+        this.status = status;
+    }
+    public String getStatus() {
+        return status;
+    }
     public void setIdUser(int idUser) {
         this.idUser = idUser;
     }
@@ -31,5 +40,11 @@ public class Order {
     }
     public Date getDateOrder() {
         return dateOrder;
+    }
+    public void setSumPrice(BigDecimal sumPrice) {
+        this.sumPrice = sumPrice;
+    }
+    public BigDecimal getSumPrice() {
+        return sumPrice;
     }
 }

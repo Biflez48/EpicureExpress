@@ -3,13 +3,22 @@
 
 <body>
 
-<form th:fragment="adminbtn" action="/administrate" method="get">
+<form th:fragment="admin" action="/administrate" method="get">
     <button id="admin-btn" type="submit" class="btn login-btn">Управление</button>
 </form>
 
-<form th:fragment="notadmin" action="/bucket" method="get">
-    <button id="bucket-btn" type="submit" class="btn bucket-btn">Корзина</button>
+<form th:fragment="courier">
+
 </form>
+
+<div class="logoutform" th:fragment="customer">
+    <form action="/orders" method="get">
+        <button id="orders-btn" type="submit" class="btn login-btn">Заказы</button>
+    </form>
+    <form action="/bucket" method="get">
+        <button id="bucket-btn" type="submit" class="btn bucket-btn">Корзина</button>
+    </form>
+</div>
 
 <button th:fragment="loginbth" id="login-btn" class="btn login-btn">Вход</button>
 

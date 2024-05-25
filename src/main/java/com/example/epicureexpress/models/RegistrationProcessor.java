@@ -4,6 +4,8 @@ import com.example.epicureexpress.repositories.UsersRepository;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.annotation.RequestScope;
 
+import java.util.List;
+
 @Component
 @RequestScope
 public class RegistrationProcessor {
@@ -23,7 +25,13 @@ public class RegistrationProcessor {
         String password = this.password;
         String repeatPassword = this.repeatPassword;
 
-        if(!repeatPassword.equals(password)){
+        List<User> gettingUsers = usersRepository.findUser(username,password);
+        if(
+                gettingUsers.size() != 0
+                || !repeatPassword.equals(password)
+                || username.length() < 1
+                || password.length() < 6
+        ){
             return false;
         }
 

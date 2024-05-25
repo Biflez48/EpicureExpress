@@ -9,6 +9,7 @@ public class LoggedUserManagementService {
     private int id;
     private String username;
     private int idRole;
+    private String roleName;
 
     public void setId(int id){
         this.id = id;
@@ -27,5 +28,13 @@ public class LoggedUserManagementService {
     }
     public int getIdRole(){
         return idRole;
+    }
+
+    public void setRoleName(String roleName) {
+        this.roleName = roleName;
+    }
+
+    public String getRoleName() {
+        return roleName;
     }
 }

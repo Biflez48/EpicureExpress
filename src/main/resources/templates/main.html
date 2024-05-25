@@ -3,7 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <title>Приветствуем!</title>
-    <link rel="stylesheet" href="../static/styles.css">
+    <link rel="stylesheet" href="../static/css/styles.css">
+    <link rel="stylesheet" href="../static/css/MainPageStyles.css">
+    <link rel="stylesheet" href="../static/css/AuthorizationStyles.css">
+    <link rel="stylesheet" href="../static/css/NavbarStyles.css">
+    <link rel="stylesheet" href="../static/css/FooterStyles.css">
 </head>
 
 <body>
@@ -12,9 +16,9 @@
     <div class="image-panels">
         <h1>Наш ассортимент</h1>
         <div>
-        <a href="/products?selectedtype=readymeal" class="panel"><img src="../static/img/readymeals.png" alt="Ready Meal"><p>ГОТОВЫЕ БЛЮДА</p></a>
-        <a href="/products?selectedtype=drink" class="panel"><img src="../static/img/drinks.png" alt="Drink"><p>НАПИТКИ</p></a>
-        <a href="/products?selectedtype=product" class="panel"><img src="../static/img/products.png" alt="Product"><p>ПРОДУКТЫ</p></a>
+        <a href="/products?selectedtype=readymeals" class="panel"><img src="../static/img/readymeals.png" alt="Ready Meal"><p>ГОТОВЫЕ БЛЮДА</p></a>
+        <a href="/products?selectedtype=drinks" class="panel"><img src="../static/img/drinks.png" alt="Drink"><p>НАПИТКИ</p></a>
+        <a href="/products?selectedtype=products" class="panel"><img src="../static/img/products.png" alt="Product"><p>ПРОДУКТЫ</p></a>
         </div>
     </div>
 
@@ -55,6 +59,6 @@
     <div class="holder"></div>
     <div th:replace="footer.html :: footer"></div>
 
-    <script src="../static/NavbarScript.js"></script>
+    <script src="../static/scripts/NavbarScript.js"></script>
 </body>
 </html>

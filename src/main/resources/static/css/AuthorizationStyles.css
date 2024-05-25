@@ -1,0 +1,106 @@
+#cancel-reg-btn,
+#cancel-log-btn{
+    background: #ff5c5c;
+    transition: all 0.1s ease-out;
+    width: 100%;
+    margin-top: 10px;
+}
+
+#cancel-reg-btn:hover,
+#cancel-log-btn:hover{
+    background: #ce4a4a;
+    transition: all 0.1s ease-out;
+}
+
+#reg-btn,
+#login-reg-btn{
+    margin-left: 10px;
+}
+
+#login-popup,
+#register-popup {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+#login-popup form,
+#register-popup form{
+    display: flex;
+    flex-direction: column;
+    align-content: stretch;
+    flex-wrap: wrap;
+}
+
+#login-popup form button,
+#register-popup form button{
+    margin-top: 10px;
+    width: -webkit-fill-available;
+}
+
+#login-popup form div,
+#register-popup form div{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1px;
+}
+
+#login-popup form div input,
+#register-popup form div input{
+    font-size: 20px;
+    margin-bottom: 10px;
+    margin-top: 1px;
+    margin-left: 10px;
+}
+
+#login-popup form div label,
+#register-popup form div label{
+    margin-left: auto;
+}
+
+#login-overlay,
+#register-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: none;
+}
+
+.logoutform{
+    display: flex;
+}
+
+.logoutform form{
+    margin-left: 20px;
+}
+
+.login-btn {
+    background-color: #4c98af;
+    transition: all 0.1s ease-out;
+}
+
+.login-btn:hover{
+    transform: scale(1.07);
+    background-color: #3e7e8f;
+    transition: all 0.1s ease-out;
+}
+
+.logout-btn {
+    background-color: #af4c4c;
+    transition: all 0.1s ease-out;
+}
+
+.logout-btn:hover{
+    transform: scale(1.07);
+    background-color: #8f3e3e;
+    transition: all 0.1s ease-out;
+}
+
