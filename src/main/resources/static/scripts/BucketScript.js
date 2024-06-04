@@ -20,7 +20,6 @@ $(document).ready(function(){
         if (newCount < 1) {
             newCount = 1;
         }
-
         $.ajax({
             type: 'POST',
             url: '/edit-bucket',
@@ -80,7 +79,6 @@ $(document).ready(function(){
             orderPopup.style.display = 'block';
         });
     }
-
     if (cancelOrderBtn) {
         cancelOrderBtn.addEventListener('click', closeOrderForm);
     }
@@ -90,5 +88,3 @@ $(document).ready(function(){
         orderPopup.style.display = 'none';
     }
 });
-
-

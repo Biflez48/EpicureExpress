@@ -6,9 +6,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 public class PaymentController {
-    public PaymentController(){
-
-    }
+    public PaymentController(){}
 
     @GetMapping("/paymentrequest")
     public String requestGet(){

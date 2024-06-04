@@ -15,7 +15,6 @@ import java.util.List;
 
 @Controller
 public class OrderController {
-
     private final OrdersRepository ordersRepository;
     private final BucketRepository bucketRepository;
     private final NomenclaturesRepository nomenclaturesRepository;
@@ -37,27 +36,18 @@ public class OrderController {
     }
 
     @PostMapping("/orderconfirm")
-    public String confirmPost(
-            @RequestParam String name,
-            @RequestParam String address,
-            @RequestParam String payment
-    ){
-
+    public String confirmPost(){
         return "redirect:/paymentrequest";
     }
 
     @GetMapping("/makeorder")
     public String makeOrderGet(){
-
         List<Bucket> products = bucketRepository.findNomenclatures();
         int idOrder = ordersRepository.AddOrder(products);
-
         nomenclaturesRepository.increaseCountPurchase(products);
         prodsOrderRepository.addProducts(idOrder,products);
-
         int idUser = loggedUserManagementService.getId();
         bucketRepository.deleteProductsByUserId(idUser);
-
         return "redirect:/bucket";
     }
 }

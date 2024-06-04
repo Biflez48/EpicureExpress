@@ -18,7 +18,6 @@ import java.util.Map;
 
 @Controller
 public class BucketController {
-
     private final LoggedUserManagementService loggedUserManagementService;
     private final NavbarService navbarService;
     private final BucketRepository bucketRepository;
@@ -47,7 +46,6 @@ public class BucketController {
 
         List<Bucket> products = bucketRepository.findNomenclatures();
         model.addAttribute("productsView",products);
-
         return "bucket.html";
     }
 
@@ -73,7 +71,6 @@ public class BucketController {
     public ResponseEntity<Map<String, Object>> deleteFromBucket(@RequestBody Map<String, Object> payload) {
         int userId = loggedUserManagementService.getId();
         int productId = (Integer) payload.get("productId");
-
         try {
             bucketRepository.deleteProductFromBucket(userId, productId);
             Map<String, Object> response = new HashMap<>();

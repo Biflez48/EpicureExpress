@@ -17,7 +17,6 @@ public class TypesRepository {
 
     public List<TypeProd> findAllTypes(){
         String sql = "SELECT * FROM typesprod ORDER BY nametype";
-
         RowMapper<TypeProd> typeProdRowMapper = (r, i) -> {
             TypeProd rowObject = new TypeProd();
             rowObject.setId(r.getInt("idtype"));
@@ -25,7 +24,6 @@ public class TypesRepository {
             rowObject.setCode(r.getString("codetype"));
             return rowObject;
         };
-
         return jdbc.query(sql, typeProdRowMapper);
     }
 }

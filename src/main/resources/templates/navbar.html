@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-
 <body>
-
 <nav th:fragment="navbar" class="navbar">
     <div class="logo-and-hamburger">
         <button class="hamburger-btn" onclick="toggleMenu()">≡</button>
@@ -19,6 +17,5 @@
     <div th:replace="authorization.html :: loginoverlay"></div>
     <div th:replace="authorization.html :: regoverlay"></div>
 </nav>
-
 </body>
 </html>

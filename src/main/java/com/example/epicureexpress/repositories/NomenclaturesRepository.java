@@ -24,9 +24,7 @@ public class NomenclaturesRepository {
 
     public int addNomenclature(Nomenclature nomenclature) {
         byte[] imageData = nomenclature.getImage();
-
         String sql = "INSERT INTO nomenclatures (idtype, namenom, priceprod, imgnom, countpur) VALUES (?, ?, ?, ?, ?) RETURNING idnom";
-
         return jdbc.queryForObject(
                 sql,
                 new Object[]{
@@ -51,23 +49,18 @@ public class NomenclaturesRepository {
     }
 
     public byte[] getImgById(int idNom){
-
         String sql = "SELECT * FROM nomenclatures WHERE idnom = "+idNom;
-
         RowMapper<Nomenclature> nomenclatureRowMapper = (r, i) -> {
             Nomenclature rowObject = new Nomenclature();
             rowObject.setId(r.getInt("idnom"));
             rowObject.setImage(r.getBytes("imgnom"));
             return rowObject;
         };
-
         return jdbc.query(sql, nomenclatureRowMapper).get(0).getImage();
     }
 
     public List<Nomenclature> findNomenclature(String selectedtype, String selectedcategory){
-
         String sql = "SELECT * FROM nomenclatures";
-
         if(selectedtype != null && !selectedtype.equals("null")){
             sql = "SELECT * FROM nomenclatures WHERE idtype IN (SELECT idtype FROM typesprod WHERE codetype = '"+selectedtype+"')";
         }
@@ -77,7 +70,6 @@ public class NomenclaturesRepository {
         if(selectedtype != null && !selectedtype.equals("null") && selectedcategory != null && !selectedcategory.equals("null")){
             sql = "SELECT DISTINCT * FROM nomenclatures WHERE idtype IN (SELECT idtype FROM typesprod WHERE codetype = '\"+selectedtype+\"') AND idnom IN (SELECT DISTINCT idnom FROM listcateg WHERE idcateg IN (SELECT idcateg FROM categories WHERE codecateg = '\"+selectedcategory+\"'))";
         }
-
         RowMapper<Nomenclature> nomenclatureRowMapper = (r, i) -> {
             Nomenclature rowObject = new Nomenclature();
             rowObject.setId(r.getInt("idnom"));
@@ -94,20 +86,16 @@ public class NomenclaturesRepository {
             }else{
                 int idNom = r.getInt("idnom");
                 String sqlBucket = "SELECT idbuc FROM bucket WHERE idnom = " + idNom+" AND idus = "+idUs;
-
                 RowMapper<Bucket> bucketRowMapper = (c, j) -> {
                     Bucket rowBuck = new Bucket();
                     rowBuck.setId(c.getInt("idbuc"));
                     return rowBuck;
                 };
-
                 List<Bucket> buckets = jdbc.query(sqlBucket, bucketRowMapper);
-
                 rowObject.setInBucket(buckets.size() > 0);
             }
             return rowObject;
         };
-
         return jdbc.query(sql, nomenclatureRowMapper);
     }
 

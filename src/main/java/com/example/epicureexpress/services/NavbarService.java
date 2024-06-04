@@ -9,7 +9,6 @@ import java.util.List;
 
 @Service
 public class NavbarService {
-
     private final CategoriesRepository categoriesRepository;
     private final LoggedUserManagementService loggedUserManagementService;
 
@@ -26,7 +25,6 @@ public class NavbarService {
 
         String username = loggedUserManagementService.getUsername();
         String userRole = loggedUserManagementService.getRoleName();
-
         if(username == null){
             model.addAttribute("authorizeForm", "loginbth");
         }else{

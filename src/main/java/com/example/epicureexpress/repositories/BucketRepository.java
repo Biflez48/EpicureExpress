@@ -10,7 +10,6 @@ import java.util.List;
 
 @Repository
 public class BucketRepository {
-
     private final JdbcTemplate jdbc;
     private final LoggedUserManagementService loggedUserManagementService;
 
@@ -23,11 +22,8 @@ public class BucketRepository {
     }
 
     public List<Bucket> findNomenclatures(){
-
         int idUs = loggedUserManagementService.getId();
-
         String sql = "SELECT n.*, b.cntprod, b.idbuc FROM nomenclatures n JOIN bucket b ON n.idnom = b.idnom WHERE b.idus = "+idUs;
-
         RowMapper<Bucket> nomenclatureRowMapper = (r, i) -> {
             Bucket rowObject = new Bucket();
             rowObject.setId(r.getInt("idnom"));
@@ -39,15 +35,12 @@ public class BucketRepository {
             rowObject.setCountProduct(r.getInt("cntprod"));
             return rowObject;
         };
-
         return jdbc.query(sql, nomenclatureRowMapper);
     }
 
     public void addToBucket(int productId){
         int userId = loggedUserManagementService.getId();
-
         String sql = "INSERT INTO bucket (idus,idnom,cntprod) VALUES (?,?,?)";
-
         jdbc.update(sql, userId, productId, 1);
     }
 
@@ -66,5 +59,4 @@ public class BucketRepository {
         String sql = "DELETE FROM bucket WHERE idus = ?";
         jdbc.update(sql, userId);
     }
-
 }

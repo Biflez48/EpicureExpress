@@ -8,7 +8,6 @@
     <link rel="stylesheet" href="../static/css/AuthorizationStyles.css">
     <link rel="stylesheet" href="../static/css/NavbarStyles.css">
 </head>
-
 <body>
     <div th:replace="navbar.html :: navbar"></div>
 
@@ -36,7 +35,6 @@
                             id="inc-btn"
                             th:data-id="${product.id}"
                             th:text="'+'"></button>
-
                 </div>
                 <button class="delete-from-bucket-btn"
                         th:data-id="${product.id}"
@@ -77,10 +75,8 @@
         <p>Суммарная цена: <span id="total-price"></span> руб.</p>
         <button id="checkout-btn">Оформить заказ</button>
     </footer>
-
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="../static/scripts/NavbarScript.js"></script>
     <script src="../static/scripts/BucketScript.js"></script>
-
 </body>
 </html>

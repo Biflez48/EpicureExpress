@@ -30,13 +30,7 @@
                         <p th:text="${order.status}"></p>
                     </div>
                 </div>
-<!--
-                <ul>
-                    <li th:each="product: order.products">
-                        <img th:src="${product.servletId}"/>
-                    </li>
-                </ul>
--->
+
                 <div>
                     <p >Сумма заказа: </p>
                     <p th:text="${order.sumPrice}"></p>
@@ -48,7 +42,6 @@
 
     <div class="holder"></div>
     <div th:replace="footer.html :: footer"></div>
-
     <script src="../static/scripts/NavbarScript.js"></script>
 </body>
 </html>

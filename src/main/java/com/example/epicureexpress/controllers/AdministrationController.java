@@ -18,7 +18,6 @@ import java.math.BigDecimal;
 
 @Controller
 public class AdministrationController {
-
     private final LoggedUserManagementService loggedUserManagementService;
     private final NomenclaturesRepository nomenclaturesRepository;
     private final NavbarService navbarService;
@@ -44,7 +43,6 @@ public class AdministrationController {
             Model model
     ){
         int userRole = loggedUserManagementService.getIdRole();
-
         if(userRole != 1){
             return "redirect:/";
         }else{
@@ -53,7 +51,6 @@ public class AdministrationController {
             model.addAttribute("types", typesRepository.findAllTypes());
             model.addAttribute("categories", categoriesRepository.findAllCategories());
         }
-
         return "administration.html";
     }
 
@@ -65,23 +62,19 @@ public class AdministrationController {
             @RequestParam int type,
             @RequestParam(required = false) String categories
     ) throws IOException {
-
         Nomenclature nomenclature = new Nomenclature();
-
         nomenclature.setImage(file.getBytes());
         nomenclature.setName(name);
         nomenclature.setPrice(new BigDecimal(price));
         nomenclature.setIdType(type);
 
         int newId = nomenclaturesRepository.addNomenclature(nomenclature);
-
         if (categories != null && !categories.isEmpty()) {
             String[] categoryIds = categories.split(",");
             for (String categoryId : categoryIds) {
                 nomenclaturesRepository.addNomenclatureCategory(newId, Integer.parseInt(categoryId));
             }
         }
-
         return "redirect:/administrate";
     }
 }

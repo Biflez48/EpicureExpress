@@ -21,11 +21,9 @@ public class LoginProcessor {
         this.loggedUserManagementService = loggedUserManagementService;
         this.usersRepository = usersRepository;
     }
-
     public boolean login(){
         String username = this.username;
         String password = this.password;
-
         boolean loginResult = false;
         List<User> gettingUsers = usersRepository.findUser(username,password);
         if (gettingUsers.size() != 0){
@@ -37,7 +35,6 @@ public class LoginProcessor {
         }
         return loginResult;
     }
-
     public boolean logout(){
         boolean logoutResult = false;
         loggedUserManagementService.setId(0);
@@ -47,7 +44,6 @@ public class LoginProcessor {
         logoutResult = true;
         return logoutResult;
     }
-
     public String getUsername(){
         return username;
     }

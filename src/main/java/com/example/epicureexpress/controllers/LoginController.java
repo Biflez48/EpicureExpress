@@ -25,7 +25,6 @@ public class LoginController {
         loginProcessor.setUsername(login);
         loginProcessor.setPassword(password);
         boolean loggedIn = loginProcessor.login();
-
         Map<String, Object> response = new HashMap<>();
         response.put("loggedIn", loggedIn);
         return ResponseEntity.ok(response);
@@ -34,7 +33,6 @@ public class LoginController {
     @PostMapping("/logout")
     public ResponseEntity<Map<String, Object>> logoutPost(){
         boolean loggedOut = loginProcessor.logout();
-
         Map<String, Object> response = new HashMap<>();
         response.put("loggedOut", loggedOut);
         return ResponseEntity.ok(response);

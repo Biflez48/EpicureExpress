@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class MainPageController {
-
     private final NavbarService navbarService;
     private final LoggedUserManagementService loggedUserManagementService;
 
@@ -31,7 +30,6 @@ public class MainPageController {
         if(userRole != null && userRole.equals("courier")){
             return "redirect:/courier";
         }
-
         return "main.html";
     }
 
@@ -39,11 +37,8 @@ public class MainPageController {
     public String notFind(
             @PathVariable String address,
             Model model) {
-
         navbarService.getNavbar(model);
-
         model.addAttribute("address", address);
-
         return "notfind.html";
     }
 }

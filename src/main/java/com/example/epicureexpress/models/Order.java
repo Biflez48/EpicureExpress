@@ -29,12 +29,6 @@ public class Order {
     public String getStatus() {
         return status;
     }
-    public void setIdUser(int idUser) {
-        this.idUser = idUser;
-    }
-    public int getIdUser() {
-        return idUser;
-    }
     public void setDateOrder(Date dateOrder) {
         this.dateOrder = dateOrder;
     }

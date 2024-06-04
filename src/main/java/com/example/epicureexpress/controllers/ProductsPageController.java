@@ -62,7 +62,6 @@ public class ProductsPageController {
         }else{
             model.addAttribute("typebutton", "addtobucketbtn");
         }
-
         return "products.html";
     }
 
@@ -76,10 +75,8 @@ public class ProductsPageController {
         }
 
         int productId = (Integer) payload.get("productId");
-
         try {
             bucketRepository.addToBucket(productId);
-
             Map<String, Object> response = new HashMap<>();
             response.put("success", true);
             return ResponseEntity.ok(response);
@@ -100,10 +97,8 @@ public class ProductsPageController {
         }
 
         int productId = (Integer) payload.get("productId");
-
         try {
             nomenclaturesRepository.deleteNomenclatureById(productId);
-
             Map<String, Object> response = new HashMap<>();
             response.put("success", true);
             return ResponseEntity.ok(response);

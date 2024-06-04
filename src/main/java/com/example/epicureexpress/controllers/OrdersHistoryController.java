@@ -12,11 +12,8 @@ import java.util.List;
 
 @Controller
 public class OrdersHistoryController {
-
     private final OrdersRepository ordersRepository;
-
     private final LoggedUserManagementService loggedUserManagementService;
-
     private final NavbarService navbarService;
 
     public OrdersHistoryController(
@@ -44,7 +41,6 @@ public class OrdersHistoryController {
 
         List<Order> orders = ordersRepository.getOrdersByUserId(userid);
         model.addAttribute("ordersView", orders);
-
         return "history.html";
     }
 }

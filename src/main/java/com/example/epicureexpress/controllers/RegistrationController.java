@@ -29,7 +29,6 @@ public class RegistrationController {
         registrationProcessor.setPassword(password);
         registrationProcessor.setRepeatPassword(repeatPassword);
         boolean registered = registrationProcessor.registration();
-
         Map<String, Object> response = new HashMap<>();
         response.put("registered", registered);
         return ResponseEntity.ok(response);

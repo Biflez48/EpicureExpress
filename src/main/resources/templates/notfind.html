@@ -9,14 +9,12 @@
         <link rel="stylesheet" href="../static/css/FooterStyles.css">
     </head>
     <body class="notfind">
-
         <div th:replace="navbar.html :: navbar"></div>
 
         <h1>Страница <span th:text="${address}"></span>  не найдена!</h1>
 
         <div class="holder"></div>
         <div th:replace="footer.html :: footer"></div>
-
         <script src="../static/scripts/NavbarScript.js"></script>
     </body>
 </html>

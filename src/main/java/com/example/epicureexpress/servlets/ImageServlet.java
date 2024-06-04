@@ -11,9 +11,7 @@ import java.io.IOException;
 
 @WebServlet(name = "imgServlet", urlPatterns = "/product/imgServlet")
 public class ImageServlet extends HttpServlet {
-
     private static final long serialVersionUID = 1L;
-
     private final NomenclaturesRepository nomenclaturesRepository;
     public ImageServlet(
             NomenclaturesRepository nomenclaturesRepository
@@ -27,7 +25,6 @@ public class ImageServlet extends HttpServlet {
         ServletOutputStream out;
         out = response.getOutputStream();
         byte[] img = nomenclaturesRepository.getImgById(id);
-        
         out.write(img);
         out.close();
     }

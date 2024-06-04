@@ -17,7 +17,6 @@ imageInput.addEventListener('change', (e) => {
         reader.onload = (event) => {
             imageOutput.style.backgroundImage = `url(${event.target.result})`;
         };
-
         reader.readAsDataURL(file);
     }
 });
@@ -26,7 +25,6 @@ addCategoryBtn.addEventListener('click', () => {
     const selectedCategory = categorySelect.options[categorySelect.selectedIndex];
     const categoryId = selectedCategory.value;
     const categoryName = selectedCategory.text;
-
     if (!isCategoryAlreadySelected(categoryId)) {
         const categoryDiv = document.createElement('div');
         categoryDiv.classList.add('category-item');
@@ -42,7 +40,6 @@ addCategoryBtn.addEventListener('click', () => {
 
         categoryDiv.appendChild(removeBtn);
         selectedCategoriesDiv.appendChild(categoryDiv);
-
         updateCategoriesInput();
     }
 });

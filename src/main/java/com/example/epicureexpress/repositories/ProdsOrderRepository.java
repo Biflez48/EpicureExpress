@@ -8,7 +8,6 @@ import java.util.List;
 
 @Repository
 public class ProdsOrderRepository {
-
     private final JdbcTemplate jdbc;
 
     public ProdsOrderRepository(

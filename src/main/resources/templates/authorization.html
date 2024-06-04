@@ -1,15 +1,11 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-
 <body>
-
 <form th:fragment="admin" action="/administrate" method="get">
     <button id="admin-btn" type="submit" class="btn login-btn">Управление</button>
 </form>
 
-<form th:fragment="courier">
-
-</form>
+<form th:fragment="courier"></form>
 
 <div class="logoutform" th:fragment="customer">
     <form action="/orders" method="get">
@@ -73,6 +69,5 @@
         <button id="cancel-reg-btn" type="button" onclick="closeRegForm()" class="btn">Отмена</button>
     </div>
 </div>
-
 </body>
 </html>
