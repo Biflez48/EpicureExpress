@@ -14,5 +14,4 @@ public class MvcConfig implements WebMvcConfigurer {
                 .addResourceHandler("/static/**")
                 .addResourceLocations("/static/","classpath:/static/");
     }
-
 }

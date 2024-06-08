@@ -66,7 +66,7 @@ public class ProductsPageController {
     }
 
     @PostMapping("/add-to-bucket")
-    public ResponseEntity<Map<String, Object>> addToBucket(@RequestBody Map<String, Object> payload) {
+    public ResponseEntity<Map<String, Object>> addToBucketPost(@RequestBody Map<String, Object> payload) {
         String username = loggedUserManagementService.getUsername();
         if(username == null){
             Map<String, Object> response = new HashMap<>();
