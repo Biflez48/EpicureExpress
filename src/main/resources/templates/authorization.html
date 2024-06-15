@@ -46,6 +46,14 @@
     </div>
 </div>
 
+<div th:fragment="regsuccessoverlay" id="register-success-overlay" style="display: none;">
+    <div id="register-success-popup">
+        <h3>Регистрация прошла успешно!</h3>
+        <h3>Теперь можете авторизоваться.</h3>
+        <button id="ok-reg-success-btn" type="button" onclick="closeNotify()" class="btn">Ок</button>
+    </div>
+</div>
+
 <div th:fragment="regoverlay" id="register-overlay" style="display: none;">
     <div id="register-popup">
         <form id="reg-form">

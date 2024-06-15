@@ -10,6 +10,7 @@ public class Order {
     private int idUser;
     private Date dateOrder;
     private BigDecimal sumPrice;
+    private String address;
 
     public void setId(int id) {
         this.id = id;
@@ -40,5 +41,17 @@ public class Order {
     }
     public BigDecimal getSumPrice() {
         return sumPrice;
+    }
+    public void setIdUser(int idUser) {
+        this.idUser = idUser;
+    }
+    public int getIdUser() {
+        return idUser;
+    }
+    public void setAddress(String address) {
+        this.address = address;
+    }
+    public String getAddress() {
+        return address;
     }
 }

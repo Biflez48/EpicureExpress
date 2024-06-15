@@ -13,7 +13,6 @@
     <div th:replace="navbar.html :: navbar"></div>
 
     <div class="products-container">
-        <h2>Вот что удалось найти:</h2>
         <ul class="products-list">
             <li th:each="product: ${productsView}">
                 <img th:src="${product.servletId}"/>

@@ -36,18 +36,15 @@ public class OrderController {
     }
 
     @PostMapping("/orderconfirm")
-    public String confirmPost(){
-        return "redirect:/paymentrequest";
-    }
-
-    @GetMapping("/makeorder")
-    public String makeOrderGet(){
+    public String confirmPost(
+            @RequestParam String address
+    ){
         List<Bucket> products = bucketRepository.findNomenclatures();
-        int idOrder = ordersRepository.AddOrder(products);
+        int idOrder = ordersRepository.AddOrder(products, address);
         nomenclaturesRepository.increaseCountPurchase(products);
         prodsOrderRepository.addProducts(idOrder,products);
         int idUser = loggedUserManagementService.getId();
         bucketRepository.deleteProductsByUserId(idUser);
-        return "redirect:/bucket";
+        return "redirect:/paymentrequest";
     }
 }

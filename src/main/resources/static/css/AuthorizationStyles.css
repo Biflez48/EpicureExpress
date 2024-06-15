@@ -1,5 +1,6 @@
 #cancel-reg-btn,
-#cancel-log-btn{
+#cancel-log-btn,
+#ok-reg-success-btn{
     background: #ff5c5c;
     transition: all 0.1s ease-out;
     width: 100%;
@@ -7,7 +8,8 @@
 }
 
 #cancel-reg-btn:hover,
-#cancel-log-btn:hover{
+#cancel-log-btn:hover,
+#ok-reg-success-btn:hover{
     background: #ce4a4a;
     transition: all 0.1s ease-out;
 }
@@ -18,7 +20,8 @@
 }
 
 #login-popup,
-#register-popup {
+#register-popup,
+#register-success-popup{
     position: absolute;
     top: 50%;
     left: 50%;
@@ -27,6 +30,19 @@
     padding: 25px;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+#register-success-popup{
+    display: flex;
+    flex-direction: column;
+    align-content: stretch;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+#register-success-popup button{
+    margin-top: 10px;
+    width: -webkit-fill-available;
 }
 
 #login-popup form,
@@ -64,7 +80,8 @@
 }
 
 #login-overlay,
-#register-overlay {
+#register-overlay,
+#register-success-overlay{
     position: fixed;
     top: 0;
     left: 0;

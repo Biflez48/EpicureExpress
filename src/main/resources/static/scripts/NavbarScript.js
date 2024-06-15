@@ -25,6 +25,9 @@ const registerPopup = document.getElementById('register-popup');
 const cancelLogBtn = document.getElementById('cancel-log-btn');
 const cancelRegBtn = document.getElementById('cancel-reg-btn');
 const loginRegBtn = document.getElementById('login-reg-btn');
+const regNotifyOverlay = document.getElementById('register-success-overlay');
+const regNotifyPopup = document.getElementById('register-success-popup');
+const okRegSuccessBtn = document.getElementById('ok-reg-success-btn');
 
 loginBtn.addEventListener('click', () => {
     loginOverlay.style.display = 'block';
@@ -39,6 +42,7 @@ regBtn.addEventListener('click', () => {
 });
 
 cancelLogBtn.addEventListener('click', closeLoginForm);
+okRegSuccessBtn.addEventListener('click', closeNotify);
 cancelRegBtn.addEventListener('click', closeRegForm);
 loginRegBtn.addEventListener('click', () => {
     registerOverlay.style.display = 'none';
@@ -76,7 +80,10 @@ function submitRegForm() {
         .then(response => response.json())
         .then(data => {
             if (data.registered) {
-                window.location.reload();
+                registerOverlay.style.display = 'none';
+                registerPopup.style.display = 'none';
+                regNotifyOverlay.style.display = 'block';
+                regNotifyPopup.style.display = 'block';
             } else {
                 handleError(form);
             }
@@ -86,6 +93,12 @@ function submitRegForm() {
 function closeLoginForm() {
     loginOverlay.style.display = 'none';
     loginPopup.style.display = 'none';
+}
+
+function closeNotify() {
+    regNotifyOverlay.style.display = 'none';
+    regNotifyPopup.style.display = 'none';
+    window.location.reload();
 }
 
 function closeRegForm() {

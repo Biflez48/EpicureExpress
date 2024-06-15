@@ -23,20 +23,21 @@ public class OrdersRepository {
         this.loggedUserManagementService = loggedUserManagementService;
     }
 
-    public int AddOrder(List<Bucket> products){
+    public int AddOrder(List<Bucket> products, String address){
         BigDecimal sumprice = new BigDecimal("0.0");
         for (Bucket product:products) {
             sumprice = sumprice.add(product.getPriceProd().multiply(new BigDecimal(product.getCountProduct())));
         }
         int idUs = loggedUserManagementService.getId();
-        String sql = "INSERT INTO orders (idst, idus, dateord,sumprice) VALUES (?, ?, ?, ?) RETURNING idord";
+        String sql = "INSERT INTO orders (idst, idus, dateord, sumprice, addressord) VALUES (?, ?, ?, ?, ?) RETURNING idord";
         return jdbc.queryForObject(
                 sql,
                 new Object[]{
                         1,
                         idUs,
                         new java.sql.Date(System.currentTimeMillis()),
-                        sumprice
+                        sumprice,
+                        address
                 },
                 Integer.class
         );
@@ -51,6 +52,7 @@ public class OrdersRepository {
             rowObject.setStatus(r.getString("namest"));
             rowObject.setDateOrder(r.getDate("dateord"));
             rowObject.setSumPrice(r.getBigDecimal("sumprice"));
+            rowObject.setAddress(r.getString("addressord"));
             return rowObject;
         };
         return jdbc.query(sql, orderRowMapper);

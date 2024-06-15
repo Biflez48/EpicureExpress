@@ -15,6 +15,6 @@ public class PaymentController {
 
     @PostMapping("/paymentconfirm")
     public String confirmPost(){
-        return "redirect:/makeorder";
+        return "redirect:/";
     }
 }

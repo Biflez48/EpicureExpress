@@ -89,7 +89,7 @@ public class ProductsPageController {
 
     @PostMapping("/delete-prod")
     public ResponseEntity<Map<String, Object>> deleteProduct(@RequestBody Map<String, Object> payload) {
-        int idRole = loggedUserManagementService.getIdRole();;
+        int idRole = loggedUserManagementService.getIdRole();
         if(idRole != 1){
             Map<String, Object> response = new HashMap<>();
             response.put("success", false);
